@@ -1,0 +1,17 @@
+СПК СМАРТ — ФИНАЛЬНАЯ PRODUCTION-СБОРКА
+
+1. Скопируйте всё содержимое этой папки в корень проекта vodokanal-spk-smart.
+2. Разрешите замену существующих файлов.
+3. В терминале VS Code выполните:
+   git add .
+   git commit -m "feat: production release"
+   git push origin feature/seo-head
+4. Проверьте через Live Server:
+   /favicon.svg
+   /favicon.ico
+   /icon-192.png
+   /icon-512.png
+   /apple-touch-icon.png
+   /og-image.jpg
+   /site.webmanifest
+5. После проверки объедините feature/seo-head с main и публикуйте main.
