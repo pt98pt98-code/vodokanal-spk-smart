@@ -3872,62 +3872,60 @@
   }
   
   // ============ FORM SUBMIT ============
-  async function handleSubmit(e) {
-    e.preventDefault();
-    const form = document.getElementById('contactForm');
-    const success = document.getElementById('formSuccess');
-    const error = document.getElementById('formError');
-    const submitButton = form.querySelector('button[type="submit"]');
-    const originalButtonText = submitButton.textContent;
+  const contactForm = document.getElementById('contactForm');
+  const formSuccess = document.getElementById('formSuccess');
+  const formError = document.getElementById('formError');
 
-    error.style.display = 'none';
-    error.textContent = '';
-    form.querySelector('input[name="page"]').value = window.location.href;
+  if (contactForm) {
+    contactForm.addEventListener('submit', async function (event) {
+      event.preventDefault();
 
-    const formData = new FormData(form);
+      const submitButton = contactForm.querySelector('button[type="submit"]');
+      const originalButtonText = submitButton ? submitButton.textContent : 'Отправить заявку';
 
-    submitButton.disabled = true;
-    submitButton.textContent = 'Отправляем...';
+      formError.style.display = 'none';
+      formError.textContent = '';
+      contactForm.querySelector('input[name="page"]').value = window.location.href;
 
-    try {
-      const response = await fetch('/send-form.php', {
-        method: 'POST',
-        body: formData
-      });
+      const formData = new FormData(contactForm);
 
-      const result = await response.json();
-
-      if (!response.ok || result.ok !== true) {
-        throw new Error(result.message || 'Не удалось отправить заявку');
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.textContent = 'Отправляем...';
       }
 
-      success.classList.add('show');
-      form.reset();
-      form.style.display = 'none';
+      try {
+        const response = await fetch('/send-form.php', {
+          method: 'POST',
+          body: formData
+        });
 
-      if (typeof ym === 'function') {
-        ym(110924726, 'reachGoal', 'form_submit');
+        const result = await response.json();
+
+        if (response.ok !== true || result.ok !== true) {
+          throw new Error(result.message || 'Не удалось отправить заявку');
+        }
+
+        contactForm.reset();
+        contactForm.style.display = 'none';
+        formSuccess.classList.add('show');
+
+        if (typeof ym === 'function') {
+          ym(110924726, 'reachGoal', 'form_submit');
+        }
+
+        setTimeout(() => formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' }), 100);
+      } catch (err) {
+        formError.textContent = 'Не удалось отправить заявку. Позвоните нам или попробуйте ещё раз.';
+        formError.style.display = 'block';
+      } finally {
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.textContent = originalButtonText;
+        }
       }
-
-      setTimeout(() => success.scrollIntoView({ behavior: 'smooth', block: 'center' }), 100);
-    } catch (err) {
-      error.textContent = 'Не удалось отправить заявку. Позвоните нам или попробуйте ещё раз.';
-      error.style.display = 'block';
-      form.style.display = '';
-    } finally {
-      submitButton.disabled = false;
-      submitButton.textContent = originalButtonText;
-    }
-
-    return false;
+    });
   }
-
-  document.addEventListener('DOMContentLoaded', function () {
-    const form = document.getElementById('contactForm');
-    if (form) {
-      form.addEventListener('submit', handleSubmit);
-    }
-  });
   
   // ============ PARALLAX ORB (desktop only) ============
   if (!IS_TOUCH && !REDUCED_MOTION) {
