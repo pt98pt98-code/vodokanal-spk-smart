@@ -76,21 +76,22 @@ $postData = http_build_query([
     'text' => $text
 ]);
 
-$context = stream_context_create([
-    'http' => [
-        'method' => 'POST',
-        'header' => "Content-Type: application/x-www-form-urlencoded\r\n",
-        'content' => $postData,
-        'timeout' => 15,
-        'ignore_errors' => true
-    ]
+$ch = curl_init($telegramUrl);
+
+curl_setopt_array($ch, [
+    CURLOPT_POST => true,
+    CURLOPT_POSTFIELDS => $postData,
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_CONNECTTIMEOUT => 10,
+    CURLOPT_TIMEOUT => 30,
+    CURLOPT_IPRESOLVE => CURL_IPRESOLVE_V4,
 ]);
 
-$response = @file_get_contents(
-    $telegramUrl,
-    false,
-    $context
-);
+$response = curl_exec($ch);
+$curlError = curl_error($ch);
+$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+curl_close($ch);
 
 $result = json_decode((string) $response, true);
 
@@ -100,7 +101,8 @@ if (!is_array($result) || ($result['ok'] ?? false) !== true) {
     echo json_encode([
         'ok' => false,
         'message' => 'Telegram не принял сообщение',
-        'telegram_error' => $result['description'] ?? 'Нет ответа'
+        'telegram_error' => $result['description'] ?? $curlError ?: 'Нет ответа',
+        'http_code' => $httpCode
     ], JSON_UNESCAPED_UNICODE);
 
     exit;
