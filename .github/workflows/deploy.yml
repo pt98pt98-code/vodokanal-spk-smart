@@ -21,11 +21,11 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
       - name: Upload files to Beget
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0
-        with: state-name: .ftp-deploy-sync-state.json
+        with:
           server: ${{ secrets.BEGET_FTP_SERVER }}
           username: ${{ secrets.BEGET_FTP_USERNAME }}
           password: ${{ secrets.BEGET_FTP_PASSWORD }}
@@ -34,7 +34,7 @@ jobs:
           local-dir: ./
           server-dir: ./
           dangerous-clean-slate: false
-          exclude: |            
+          exclude: |
             **/.git*
             **/.git*/**
             **/.github/**
