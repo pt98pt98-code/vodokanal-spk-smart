@@ -741,6 +741,28 @@
     border-color: var(--sky);
     transform: translateY(-3px);
   }
+
+  .hero-service-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 24px;
+    padding: 14px 24px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-bright));
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.2;
+    box-shadow: 0 12px 32px rgba(212, 165, 116, 0.24);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .hero-service-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 40px rgba(212, 165, 116, 0.4);
+  }
   
   /* Hero visual — interactive orb */
   .hero-visual {
@@ -2677,6 +2699,9 @@
       <p>
         Подключаем объекты к сетям водоснабжения и водоотведения ГУП «Водоканал СПб» и «Водоканал ЛО». Полный комплекс работ — от получения исходной разрешительной документации до ввода готового объекта в эксплуатацию.
       </p>
+      <a href="/podklyuchenie-k-vodokanalu/" class="hero-service-link">
+        Подробнее об услуге
+      </a>
       <div class="hero-stats">
         <div class="stat">
           <div class="stat-num" data-count="10">10</div>
@@ -2875,6 +2900,7 @@
         <div class="service-number">01</div>
         <h3>Получение исходной разрешительной документации (ТУ, УП)</h3>
         <p>Подготовка и подача документов в ГУП «Водоканал СПб» на заключение Договора о подключении к сетям.</p>
+        <a href="/podklyuchenie-k-vodokanalu/" class="btn btn-ghost" style="margin-top: 18px; justify-content: flex-start; padding: 12px 16px; width: fit-content;">Подробнее об услуге</a>
       </div>
       
       <div class="service-card" data-hover>
@@ -4040,6 +4066,6 @@
     }, false);
   })();
 </script>
-<!-- deploy test 2026-07-25 -->
+
 </body>
 </html>
