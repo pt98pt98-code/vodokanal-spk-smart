@@ -6,4 +6,10 @@
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
-</urlset>
+
+<url>
+  <loc>https://spk-smart.ru/podklyuchenie-k-vodokanalu/</loc>
+  <lastmod>2026-07-25</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.9</priority>
+</url>
