@@ -3995,5 +3995,51 @@
   })();
 </script>
 
+<script>
+  (function() {
+    var COUNTER_ID = 110924726;
+
+    function safeYm(goal) {
+      if (typeof ym === 'function') {
+        try { ym(COUNTER_ID, 'reachGoal', goal); } catch (e) {}
+      }
+    }
+
+    // Event delegation: single handler for all link clicks — avoids attaching
+    // multiple handlers to the same element and doesn't change markup.
+    document.addEventListener('click', function (e) {
+      var el = e.target;
+      while (el && el !== document) {
+        if (el.tagName && el.tagName.toLowerCase() === 'a') {
+          var href = (el.getAttribute('href') || '').toLowerCase();
+
+          if (href.indexOf('tel:') === 0) {
+            safeYm('phone_click');
+            return;
+          }
+
+          if (href.indexOf('wa.me') !== -1 || href.indexOf('whatsapp') !== -1) {
+            safeYm('whatsapp_click');
+            return;
+          }
+
+          if (href.indexOf('t.me') !== -1 || href.indexOf('telegram') !== -1) {
+            safeYm('telegram_click');
+            return;
+          }
+
+          if (href.indexOf('max.ru') !== -1) {
+            safeYm('max_click');
+            return;
+          }
+
+          return; // anchor found but not a tracked href
+        }
+        el = el.parentNode;
+      }
+    }, false);
+  })();
+</script>
+
 </body>
 </html>

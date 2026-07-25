@@ -1,0 +1,44 @@
+name: Deploy to Beget
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: production-deploy
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Deploy website
+    runs-on: ubuntu-latest
+
+    environment:
+      name: production
+      url: https://spk-smart.ru/
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Upload files to Beget
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
+        with:
+          server: ${{ secrets.BEGET_FTP_SERVER }}
+          username: ${{ secrets.BEGET_FTP_USERNAME }}
+          password: ${{ secrets.BEGET_FTP_PASSWORD }}
+          protocol: ftp
+          port: 21
+          local-dir: ./
+          server-dir: ./
+          dangerous-clean-slate: false
+          exclude: |            
+            **/.git*
+            **/.git*/**
+            **/.github/**
+            **/README.md
+            **/DEPLOY.txt
+            **/telegram-config.php
+            **/index.html.orig
