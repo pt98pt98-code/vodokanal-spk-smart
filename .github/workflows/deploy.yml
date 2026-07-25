@@ -25,7 +25,7 @@ jobs:
 
       - name: Upload files to Beget
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0
-        with:
+        with: state-name: .ftp-deploy-sync-state.json
           server: ${{ secrets.BEGET_FTP_SERVER }}
           username: ${{ secrets.BEGET_FTP_USERNAME }}
           password: ${{ secrets.BEGET_FTP_PASSWORD }}
