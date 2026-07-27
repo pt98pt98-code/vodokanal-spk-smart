@@ -67,732 +67,78 @@
   }
   </script>
 
+
   <style>
-    :root {
-      --abyss: #02111f;
-      --deep: #0a1f3a;
-      --ocean: #0d2b4f;
-      --tide: #1a4d7a;
-      --wave: #2d7eb8;
-      --sky: #5ab3e0;
-      --foam: #b8e0f0;
-      --paper: #f4f9fc;
-      --gold: #d4a574;
-      --gold-bright: #f0c896;
-      --glass: rgba(244, 249, 252, 0.06);
-      --glass-bright: rgba(244, 249, 252, 0.12);
-      --line: rgba(184, 224, 240, 0.18);
-      --shadow: 0 20px 60px rgba(2, 17, 31, 0.35);
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-      color: var(--paper);
-      background: linear-gradient(180deg, var(--abyss) 0%, var(--deep) 100%);
-      line-height: 1.6;
-      overflow-x: hidden;
-      min-height: 100vh;
-      position: relative;
-    }
-
-    .bg-layer, .bg-noise, .wave-bg {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: -2;
-    }
-    .bg-layer {
-      background:
-        radial-gradient(ellipse at 15% 0%, rgba(45, 126, 184, 0.22), transparent 46%),
-        radial-gradient(ellipse at 80% 100%, rgba(26, 77, 122, 0.26), transparent 42%),
-        linear-gradient(180deg, var(--abyss) 0%, var(--deep) 100%);
-      z-index: -3;
-    }
-    .bg-noise {
-      opacity: 0.04;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-      z-index: -2;
-    }
-    .wave-bg {
-      z-index: -1;
-      opacity: 0.22;
-      width: 220%;
-      height: 45vh;
-      bottom: -8vh;
-      left: -10%;
-      animation: waveSlide 26s linear infinite;
-      background: linear-gradient(90deg, transparent 0%, rgba(90, 179, 224, 0.16) 45%, transparent 100%);
-      mask: radial-gradient(circle at 50% 100%, black 55%, transparent 80%);
-    }
-    @keyframes waveSlide { from { transform: translateX(0); } to { transform: translateX(-25%); } }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      background: rgba(2, 17, 31, 0.72);
-      border-bottom: 1px solid var(--line);
-    }
-    .topbar {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 16px 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-    }
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-      color: var(--paper);
-      font-weight: 700;
-      letter-spacing: -0.02em;
-    }
-    .brand-mark {
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(135deg, rgba(90,179,224,0.25), rgba(212,165,116,0.22));
-      border: 1px solid rgba(184,224,240,0.2);
-      box-shadow: inset 0 0 24px rgba(255,255,255,0.06);
-    }
-    .topbar-nav { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
-    .topbar-nav a, .topbar-nav button {
-      color: var(--paper);
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 600;
-      background: none;
-      border: 0;
-      padding: 8px 12px;
-      border-radius: 999px;
-      cursor: pointer;
-    }
-    .topbar-nav a:hover, .topbar-nav button:hover { background: rgba(244,249,252,0.08); }
-    .btn, .btn-ghost, .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      justify-content: center;
-      text-decoration: none;
-      border-radius: 999px;
-      padding: 14px 24px;
-      font-weight: 700;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-      border: 1px solid transparent;
-    }
-    .btn:hover, .btn-ghost:hover, .btn-primary:hover { transform: translateY(-2px); }
-    .btn-primary {
-      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-bright) 100%);
-      color: var(--abyss);
-      box-shadow: 0 12px 32px rgba(212,165,116,0.18);
-    }
-    .btn-ghost {
-      color: var(--paper);
-      background: rgba(244,249,252,0.06);
-      border-color: rgba(184,224,240,0.2);
-    }
-
-    .hero {
-      padding: 72px 0 44px;
-    }
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 32px;
-      align-items: center;
-      min-height: 78vh;
-    }
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--sky);
-      margin-bottom: 16px;
-    }
-    .eyebrow .dot { width: 8px; height: 8px; border-radius: 50%; background: linear-gradient(135deg, var(--sky), var(--gold)); box-shadow: 0 0 0 6px rgba(90,179,224,0.16); }
-    h1 {
-      font-size: clamp(2.2rem, 4vw, 4rem);
-      line-height: 1.06;
-      letter-spacing: -0.03em;
-      margin-bottom: 18px;
-      max-width: 780px;
-    }
-    .accent { color: var(--gold-bright); }
-    .hero p { font-size: 1.06rem; color: rgba(244,249,252,0.86); max-width: 720px; margin-bottom: 24px; }
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 24px; }
-    .hero-quick { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 24px; }
-    .pill {
-      display: inline-flex;
-      gap: 8px;
-      align-items: center;
-      padding: 10px 14px;
-      border-radius: 999px;
-      background: rgba(244,249,252,0.06);
-      border: 1px solid var(--line);
-      color: var(--paper);
-      font-weight: 600;
-      font-size: 0.95rem;
-    }
-    .hero-advantages { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 24px; }
-    .adv-card {
-      padding: 16px;
-      border-radius: 18px;
-      background: linear-gradient(145deg, rgba(244,249,252,0.08), rgba(244,249,252,0.04));
-      border: 1px solid rgba(184,224,240,0.14);
-      box-shadow: var(--shadow);
-    }
-    .adv-card strong { display: block; font-size: 1rem; margin-bottom: 8px; }
-    .adv-card span { color: rgba(244,249,252,0.74); font-size: 0.92rem; }
-
-    .hero-visual {
-      position: relative;
-      min-height: 460px;
-      display: grid;
-      place-items: center;
-      padding: 24px;
-    }
-    .orb {
-      width: min(100%, 420px);
-      aspect-ratio: 1;
-      border-radius: 50%;
-      position: relative;
-      background: radial-gradient(circle at 30% 30%, rgba(244,249,252,0.95), rgba(90,179,224,0.22) 40%, rgba(10,31,58,0.7) 70%, rgba(2,17,31,0.95) 100%);
-      box-shadow: inset 0 0 90px rgba(255,255,255,0.18), 0 30px 80px rgba(2,17,31,0.35);
-      border: 1px solid rgba(184,224,240,0.2);
-      animation: float 6s ease-in-out infinite;
-    }
-    .orb::before, .orb::after {
-      content: '';
-      position: absolute;
-      inset: 12%;
-      border-radius: 50%;
-      border: 1px solid rgba(184,224,240,0.16);
-      animation: pulse 4s ease-in-out infinite;
-    }
-    .orb::after { inset: 24%; animation-delay: 1s; }
-    .orb-content {
-      position: absolute;
-      inset: 0;
-      display: grid;
-      place-items: center;
-      text-align: center;
-      padding: 20px;
-    }
-    .orb-content h2 {
-      font-size: 1.4rem;
-      margin-bottom: 10px;
-      color: var(--paper);
-      letter-spacing: -0.02em;
-    }
-    .orb-content p { color: rgba(244,249,252,0.82); font-size: 0.95rem; max-width: 250px; }
-    .floating-badge {
-      position: absolute;
-      padding: 10px 14px;
-      border-radius: 999px;
-      background: rgba(2,17,31,0.78);
-      border: 1px solid rgba(184,224,240,0.18);
-      font-size: 0.9rem;
-      box-shadow: var(--shadow);
-      color: var(--paper);
-      white-space: nowrap;
-    }
-    .floating-badge.one { top: 8%; left: 6%; animation: float 5.6s ease-in-out infinite; }
-    .floating-badge.two { right: 8%; top: 16%; animation: float 6.8s ease-in-out infinite reverse; }
-    .floating-badge.three { left: 20%; bottom: 8%; animation: float 5.2s ease-in-out infinite; }
-    @keyframes float { 0%,100% { transform: translateY(0);} 50% { transform: translateY(-12px);} }
-    @keyframes pulse { 0%,100% { transform: scale(1); opacity: 0.7;} 50% { transform: scale(1.04); opacity: 1; } }
-
-    section { padding: 80px 0; }
-    .section-header { max-width: 760px; margin-bottom: 32px; }
-    .section-eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--sky); margin-bottom: 16px; }
-    .section-title { font-size: clamp(1.7rem, 3vw, 2.35rem); line-height: 1.16; margin-bottom: 12px; }
-    .section-sub { color: rgba(244,249,252,0.8); font-size: 1rem; }
-    .grid-2, .grid-3, .grid-4 { display: grid; gap: 18px; }
-    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-    .card {
-      padding: 22px;
-      border-radius: 22px;
-      background: linear-gradient(145deg, rgba(244,249,252,0.08), rgba(244,249,252,0.04));
-      border: 1px solid rgba(184,224,240,0.14);
-      box-shadow: var(--shadow);
-    }
-    .card h3 { font-size: 1.06rem; margin-bottom: 10px; }
-    .card p { color: rgba(244,249,252,0.8); font-size: 0.96rem; }
-    .list-card ul { padding-left: 18px; color: rgba(244,249,252,0.82); }
-    .list-card li { margin-bottom: 8px; }
-
-    .timeline { position: relative; padding-left: 24px; }
-    .timeline::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, var(--sky), var(--gold)); }
-    .step { position: relative; padding: 0 0 20px 24px; }
-    .step::before { content: ''; position: absolute; left: -1px; top: 6px; width: 18px; height: 18px; border-radius: 50%; background: linear-gradient(135deg, var(--sky), var(--gold)); box-shadow: 0 0 0 6px rgba(90,179,224,0.14); }
-    .step-number { font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-bright); margin-bottom: 6px; font-weight: 700; }
-    .step h3 { margin-bottom: 6px; }
-    .step p { color: rgba(244,249,252,0.82); }
-
-    .cost-grid .card strong { color: var(--gold-bright); display: block; margin-bottom: 8px; }
-
-    .documents-list { display: grid; gap: 12px; }
-    .documents-list .doc-item { display: flex; gap: 12px; align-items: start; padding: 14px 16px; border-radius: 16px; background: rgba(244,249,252,0.04); border: 1px solid rgba(184,224,240,0.14); }
-    .doc-item .dot { width: 10px; height: 10px; border-radius: 50%; background: linear-gradient(135deg, var(--sky), var(--gold)); margin-top: 8px; flex-shrink: 0; }
-
-    .faq-list { display: grid; gap: 12px; }
-    .faq-item { border-radius: 18px; border: 1px solid rgba(184,224,240,0.14); background: rgba(244,249,252,0.05); overflow: hidden; }
-    .faq-question {
-      width: 100%; border: 0; background: transparent; color: var(--paper); text-align: left; padding: 18px 20px; font: inherit; display: flex; justify-content: space-between; align-items: center; gap: 16px; cursor: pointer;
-    }
-    .faq-question span:first-child { font-weight: 600; }
-    .faq-answer { display: none; padding: 0 20px 18px; color: rgba(244,249,252,0.82); }
-    .faq-item.open .faq-answer { display: block; }
-    .faq-toggle { color: var(--gold-bright); font-size: 1.1rem; transition: transform 0.2s ease; }
-    .faq-item.open .faq-toggle { transform: rotate(180deg); }
-
-    .cta-wrap {
-      display: grid;
-      grid-template-columns: 0.95fr 1.05fr;
-      gap: 24px;
-      align-items: start;
-      padding: 28px;
-      border-radius: 28px;
-      background: linear-gradient(135deg, rgba(244,249,252,0.09), rgba(244,249,252,0.04));
-      border: 1px solid rgba(184,224,240,0.16);
-      box-shadow: var(--shadow);
-    }
-    .contact-list { display: grid; gap: 12px; margin-top: 18px; }
-    .contact-link {
-      display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 16px;
-      text-decoration: none; color: var(--paper); background: rgba(244,249,252,0.05); border: 1px solid rgba(184,224,240,0.12);
-    }
-    .contact-link:hover { background: rgba(244,249,252,0.09); }
-    .form { display: grid; gap: 14px; }
-    .field { display: grid; gap: 8px; }
-    .field label { font-size: 0.95rem; font-weight: 600; color: rgba(244,249,252,0.9); }
-    .field input, .field textarea, .field select {
-      width: 100%; border: 1px solid rgba(184,224,240,0.18); background: rgba(2,17,31,0.7); color: var(--paper); padding: 13px 14px; border-radius: 14px; font: inherit;
-    }
-    .field textarea { min-height: 110px; resize: vertical; }
-    .consent { display: flex; gap: 10px; align-items: flex-start; font-size: 0.9rem; color: rgba(244,249,252,0.76); }
-    .consent a { color: var(--gold-bright); }
-    .submit-btn { width: 100%; border: 0; cursor: pointer; }
-    .form-success { display: none; padding: 18px; border-radius: 18px; border: 1px solid rgba(90,179,224,0.24); background: rgba(90,179,224,0.1); color: var(--paper); }
-    .form-success.show { display: block; }
-    .form-error { display: none; color: #f7b5b5; font-size: 0.95rem; }
-
-    .breadcrumbs {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 18px 24px 0;
-      font-size: 0.95rem;
-      color: rgba(244,249,252,0.76);
-    }
-    .breadcrumbs a { color: var(--gold-bright); text-decoration: none; }
-
-    .floating-actions {
-      position: fixed;
-      right: 18px;
-      bottom: 18px;
-      z-index: 120;
-      display: grid;
-      gap: 10px;
-    }
-    .fab {
-      display: grid;
-      place-items: center;
-      width: 54px;
-      height: 54px;
-      border-radius: 50%;
-      color: white;
-      text-decoration: none;
-      box-shadow: var(--shadow);
-      border: 1px solid rgba(255,255,255,0.16);
-    }
-    .fab.wa { background: linear-gradient(135deg, #25d366, #128c4d); }
-    .fab.tg { background: linear-gradient(135deg, #29a3e6, #1a8bd1); }
-    .fab.max { background: linear-gradient(135deg, #0077ff, #0058c8); }
-    .fab.call { background: linear-gradient(135deg, var(--gold), var(--gold-bright)); color: var(--abyss); }
-
-    footer {
-      padding: 42px 0 70px;
-      border-top: 1px solid rgba(184,224,240,0.14);
-      margin-top: 20px;
-    }
-    .footer-grid { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 24px; }
-    .footer-grid a { color: rgba(244,249,252,0.78); text-decoration: none; }
-    .footer-grid a:hover { color: var(--gold-bright); }
-    .footer-grid ul { list-style: none; display: grid; gap: 8px; }
-    .footer-grid h4 { margin-bottom: 12px; font-size: 0.98rem; color: var(--paper); }
-    .copy { margin-top: 24px; color: rgba(244,249,252,0.62); font-size: 0.92rem; }
-
-    @media (max-width: 960px) {
-      .hero-grid, .cta-wrap { grid-template-columns: 1fr; }
-      .hero-advantages { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .grid-3 { grid-template-columns: 1fr; }
-      .footer-grid { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 760px) {
-      .topbar { padding: 14px 18px; }
-      .breadcrumbs { padding: 16px 18px 0; }
-      .container { padding: 0 18px; }
-      .hero { padding-top: 36px; }
-      .hero-advantages, .grid-2, .grid-4 { grid-template-columns: 1fr; }
-      .hero-visual { min-height: 340px; }
-      .orb { width: min(100%, 320px); }
-      .floating-badge { font-size: 0.8rem; }
-      .cta-wrap { padding: 20px; }
-      .topbar-nav a:not(.primary-link) { display: none; }
-      .floating-actions { right: 12px; bottom: 12px; }
-    }
+    :root{--ink:#071522;--navy:#0b2237;--panel:#102d48;--cyan:#5ed3e8;--cyan2:#9cecff;--paper:#eef8fb;--muted:#a9c4d1;--gold:#efbd75;--line:rgba(156,236,255,.18);--glass:rgba(255,255,255,.055);--shadow:0 24px 70px rgba(0,0,0,.28)}
+    *{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:var(--paper);background:var(--ink);line-height:1.6;overflow-x:hidden}.container{width:min(1180px,calc(100% - 40px));margin:auto}.grid-bg{position:fixed;inset:0;z-index:-3;background:linear-gradient(rgba(94,211,232,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(94,211,232,.035) 1px,transparent 1px),radial-gradient(circle at 85% 10%,rgba(94,211,232,.13),transparent 38%),linear-gradient(180deg,#071522,#0a2033);background-size:38px 38px,38px 38px,auto,auto}.site-header{position:sticky;top:0;z-index:50;background:rgba(7,21,34,.78);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}.topbar{height:76px;display:flex;align-items:center;justify-content:space-between;gap:22px}.brand{display:flex;align-items:center;gap:12px;color:#fff;text-decoration:none;font-weight:800;font-size:20px}.brand-mark{width:40px;height:40px;border:1px solid rgba(94,211,232,.45);border-radius:12px;display:grid;place-items:center;background:linear-gradient(145deg,rgba(94,211,232,.16),rgba(239,189,117,.12))}.brand small{display:block;color:var(--muted);font-size:9px;letter-spacing:.17em;font-weight:700}.nav{display:flex;align-items:center;gap:8px}.nav a{color:#dcebf1;text-decoration:none;font-size:14px;font-weight:700;padding:10px 12px;border-radius:10px}.nav a:hover{background:var(--glass)}.phone{background:var(--gold);color:#071522!important;padding:11px 18px!important;border-radius:999px!important}.hero{padding:74px 0 58px}.hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:56px;align-items:center;min-height:690px}.kicker{display:inline-flex;align-items:center;gap:10px;text-transform:uppercase;letter-spacing:.16em;font-size:12px;font-weight:800;color:var(--cyan2);margin-bottom:18px}.kicker:before{content:"";width:28px;height:1px;background:var(--cyan)}h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(44px,5.8vw,78px);line-height:.98;letter-spacing:-.045em;margin-bottom:24px}h1 em{font-weight:400;color:var(--cyan2)}.lead{font-size:18px;color:#c5dbe4;max-width:690px;margin-bottom:30px}.actions{display:flex;gap:14px;flex-wrap:wrap}.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 22px;border-radius:12px;font-weight:800;text-decoration:none;border:1px solid transparent;transition:.2s}.btn:hover{transform:translateY(-2px)}.btn-primary{background:var(--gold);color:#071522;box-shadow:0 15px 35px rgba(239,189,117,.18)}.btn-secondary{color:#fff;border-color:var(--line);background:var(--glass)}.microfacts{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:34px}.microfact{padding:16px;border-top:1px solid var(--line)}.microfact b{display:block;font-size:20px;color:#fff}.microfact span{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.09em}.blueprint{position:relative;min-height:560px;border:1px solid rgba(94,211,232,.25);border-radius:24px;background:linear-gradient(150deg,rgba(16,45,72,.95),rgba(7,21,34,.92));box-shadow:var(--shadow);overflow:hidden}.blueprint:before{content:"";position:absolute;inset:0;background:linear-gradient(rgba(156,236,255,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(156,236,255,.055) 1px,transparent 1px);background-size:24px 24px}.bp-label{position:absolute;z-index:2;padding:7px 10px;background:#071522;border:1px solid var(--line);border-radius:8px;font-size:11px;color:var(--cyan2);font-weight:800;letter-spacing:.06em}.bp-a{left:8%;top:12%}.bp-b{right:7%;top:21%}.bp-c{right:13%;bottom:13%}.bp-d{left:8%;bottom:22%}.blueprint svg{position:absolute;inset:40px;width:calc(100% - 80px);height:calc(100% - 80px)}.bp-note{position:absolute;left:28px;right:28px;bottom:24px;display:flex;justify-content:space-between;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.11em}.section{padding:92px 0}.section.alt{background:rgba(255,255,255,.025);border-block:1px solid rgba(156,236,255,.08)}.section-head{display:grid;grid-template-columns:.7fr 1.3fr;gap:40px;align-items:end;margin-bottom:42px}.section-tag{color:var(--cyan2);font-size:12px;text-transform:uppercase;letter-spacing:.16em;font-weight:800}.section h2{font-family:Georgia,"Times New Roman",serif;font-size:clamp(34px,4vw,54px);line-height:1.06}.section-intro{color:var(--muted);font-size:17px}.deliverables{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.deliverable{display:grid;grid-template-columns:56px 1fr;gap:18px;padding:24px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(145deg,rgba(255,255,255,.065),rgba(255,255,255,.025))}.deliverable .num{font-family:Georgia,serif;font-size:34px;color:var(--cyan2)}.deliverable h3{font-size:19px;margin-bottom:7px}.deliverable p{color:var(--muted)}.timeline{position:relative;display:grid;grid-template-columns:repeat(5,1fr);gap:16px}.timeline:before{content:"";position:absolute;left:8%;right:8%;top:25px;height:1px;background:linear-gradient(90deg,var(--cyan),var(--gold))}.step{position:relative;padding-top:58px}.step .dot{position:absolute;top:14px;left:0;width:23px;height:23px;border-radius:50%;background:#071522;border:5px solid var(--cyan);box-shadow:0 0 0 5px rgba(94,211,232,.11)}.step:nth-child(5) .dot{border-color:var(--gold)}.step b{display:block;margin-bottom:8px}.step p{font-size:14px;color:var(--muted)}.source-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}.checklist,.risk-card{border:1px solid var(--line);border-radius:22px;padding:30px;background:var(--glass)}.checklist ul{list-style:none;display:grid;gap:14px;margin-top:20px}.checklist li{display:flex;gap:12px;color:#d6e6ec}.checklist li:before{content:"✓";color:var(--cyan);font-weight:900}.risk-card{background:linear-gradient(145deg,rgba(239,189,117,.1),rgba(255,255,255,.03))}.risk-card h3{font-family:Georgia,serif;font-size:30px;margin-bottom:14px}.risk-card p{color:#c5dbe4}.risk-meter{margin-top:24px;display:grid;gap:14px}.meter-row{display:grid;grid-template-columns:120px 1fr;gap:12px;align-items:center;font-size:13px;color:var(--muted)}.meter{height:8px;background:rgba(255,255,255,.08);border-radius:999px;overflow:hidden}.meter i{display:block;height:100%;background:linear-gradient(90deg,var(--cyan),var(--gold));border-radius:inherit}.packages{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.package{padding:28px;border:1px solid var(--line);border-radius:20px;background:rgba(255,255,255,.035);position:relative}.package.featured{transform:translateY(-10px);background:linear-gradient(150deg,rgba(94,211,232,.12),rgba(255,255,255,.045));border-color:rgba(94,211,232,.42)}.badge{position:absolute;right:18px;top:18px;padding:5px 9px;border-radius:999px;background:var(--cyan);color:#071522;font-size:10px;text-transform:uppercase;font-weight:900}.package h3{font-size:22px;margin-bottom:12px}.package p{color:var(--muted);margin-bottom:20px}.package ul{list-style:none;display:grid;gap:10px}.package li:before{content:"— ";color:var(--cyan)}.faq{display:grid;gap:12px}.faq-item{border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.035);overflow:hidden}.faq-question{width:100%;display:flex;justify-content:space-between;gap:18px;text-align:left;padding:19px 22px;color:#fff;background:none;border:0;font:inherit;font-weight:800;cursor:pointer}.faq-answer{display:none;padding:0 22px 22px;color:var(--muted)}.faq-item.open .faq-answer{display:block}.contact-wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:26px;padding:34px;border-radius:26px;background:linear-gradient(145deg,#0f304e,#081a2b);border:1px solid var(--line)}.contact-copy h2{font-size:44px;margin:12px 0 16px}.contact-copy p{color:var(--muted)}.contact-links{display:grid;gap:10px;margin-top:24px}.contact-links a{color:#fff;text-decoration:none}.form{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:24px;background:rgba(7,21,34,.6);border:1px solid var(--line);border-radius:20px}.field{display:grid;gap:7px}.field.full,.consent,.submit-btn{grid-column:1/-1}.field label{font-size:12px;color:var(--muted);font-weight:800;text-transform:uppercase;letter-spacing:.08em}.field input,.field select,.field textarea{width:100%;border:1px solid rgba(156,236,255,.18);background:#071522;color:#fff;border-radius:10px;padding:13px 14px;font:inherit}.field textarea{min-height:115px;resize:vertical}.consent{display:flex;gap:10px;color:var(--muted);font-size:12px}.form-success,.form-error{display:none;padding:20px;border-radius:14px;margin-top:14px}.form-success.show{display:block;background:rgba(80,210,150,.12);border:1px solid rgba(80,210,150,.35)}.form-error{background:rgba(255,90,90,.11);border:1px solid rgba(255,90,90,.3)}footer{padding:46px 0;border-top:1px solid var(--line)}.footer-grid{display:grid;grid-template-columns:1.3fr .7fr .7fr;gap:30px}.footer-grid h4{margin-bottom:10px}.footer-grid ul{list-style:none}.footer-grid a{color:var(--muted);text-decoration:none}.copy{margin-top:26px;color:#7895a2;font-size:13px}.floating-actions{position:fixed;right:18px;bottom:18px;display:grid;gap:10px;z-index:40}.fab{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;text-decoration:none;border:1px solid rgba(255,255,255,.25);box-shadow:0 8px 25px rgba(0,0,0,.25)}.fab:after{font-size:19px}.wa{background:#12b866}.wa:after{content:"W"}.tg{background:#239bd7}.tg:after{content:"✈"}.max{background:#1672ea}.max:after{content:"M"}.call{background:var(--gold);color:#071522}.call:after{content:"☎"}
+    @media(max-width:900px){.nav a:not(.phone){display:none}.hero-grid,.section-head,.source-grid,.contact-wrap{grid-template-columns:1fr}.hero-grid{min-height:auto}.blueprint{min-height:470px}.timeline{grid-template-columns:1fr}.timeline:before{left:11px;right:auto;top:15px;bottom:15px;width:1px;height:auto}.step{padding:0 0 22px 48px}.step .dot{top:0}.packages{grid-template-columns:1fr}.package.featured{transform:none}.deliverables{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr 1fr}.microfacts{grid-template-columns:1fr 1fr}}
+    @media(max-width:600px){.container{width:min(100% - 28px,1180px)}.topbar{height:68px}.brand{font-size:16px}.phone{padding:9px 12px!important;font-size:12px!important}.hero{padding-top:46px}.hero-grid{gap:34px}.blueprint{min-height:390px}.blueprint svg{inset:22px;width:calc(100% - 44px);height:calc(100% - 44px)}.microfacts{grid-template-columns:1fr}.form{grid-template-columns:1fr;padding:18px}.field,.field.full,.consent,.submit-btn{grid-column:1}.footer-grid{grid-template-columns:1fr}.contact-copy h2{font-size:36px}.section{padding:68px 0}.floating-actions{right:10px;bottom:10px}.fab{width:44px;height:44px}}
   </style>
+
 </head>
 <body>
-  <div class="bg-layer"></div>
-  <div class="bg-noise"></div>
-  <div class="wave-bg"></div>
-
+  <div class="grid-bg"></div>
   <header class="site-header">
-    <div class="topbar">
-      <a href="/" class="brand">
-        <span class="brand-mark">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M12 3l8 4v6c0 5-3 8-8 8s-8-3-8-8V7l8-4z" />
-          </svg>
-        </span>
-        <span>Водоканал<span style="color:var(--sky)">СПБ</span></span>
-      </a>
-      <nav class="topbar-nav">
-        <a href="#services">Что входит</a>
-        <a href="#steps">Этапы</a>
-        <a href="#faq">FAQ</a>
-        <a href="tel:+79117621468" class="primary-link">+7 911 762-14-68</a>
-      </nav>
+    <div class="container topbar">
+      <a class="brand" href="/"><span class="brand-mark">💧</span><span>Водоканал<span style="color:var(--cyan)">СПБ</span><small>СПК СМАРТ · САНКТ-ПЕТЕРБУРГ</small></span></a>
+      <nav class="nav"><a href="#scope">Состав проекта</a><a href="#process">Процесс</a><a href="#packages">Форматы</a><a href="#faq">FAQ</a><a class="phone" href="tel:+79117621468">+7 911 762-14-68</a></nav>
     </div>
   </header>
-
-  <div class="breadcrumbs">
-    <a href="/">Главная</a> → Проектирование сетей
-  </div>
-
   <main>
     <section class="hero">
       <div class="container hero-grid">
         <div>
-          <div class="eyebrow"><span class="dot"></span>Проектирование сетей водоснабжения и водоотведения</div>
-          <h1>Проектирование наружных сетей водоснабжения и водоотведения <span class="accent">под ключ</span></h1>
-          <p>Разработаем проект наружных сетей водоснабжения и водоотведения: от анализа технических условий и трассы до готовой документации и сопровождения согласований.</p>
-          <div class="hero-actions">
-            <a href="#contact" class="btn btn-primary">Получить консультацию</a>
-            <a href="tel:+79117621468" class="btn btn-ghost">+7 911 762-14-68</a>
-          </div>
-          <div class="hero-quick">
-            <span class="pill">Проектная документация</span>
-            <span class="pill">Сопровождение согласований</span>
-            <span class="pill">Вода и канализация</span>
-            <span class="pill">Санкт-Петербург и Ленобласть</span>
-          </div>
-          <div class="hero-advantages">
-            <div class="adv-card">
-              <strong>Анализ исходных данных</strong>
-              <span>Проверим технические условия, топосъёмку, нагрузки и ограничения участка</span>
-            </div>
-            <div class="adv-card">
-              <strong>Проектные решения</strong>
-              <span>Разработаем трассу, профили, узлы и необходимые расчёты</span>
-            </div>
-            <div class="adv-card">
-              <strong>Согласование проекта</strong>
-              <span>Сопроводим рассмотрение документации и устранение замечаний</span>
-            </div>
-            <div class="adv-card">
-              <strong>До строительства сетей</strong>
-              <span>Подготовим проект к реализации и дальнейшему подключению объекта</span>
-            </div>
-          </div>
+          <div class="kicker">Инженерное проектирование · СПб и ЛО</div>
+          <h1>Проект сетей, который <em>можно согласовать и построить</em></h1>
+          <p class="lead">Разрабатываем наружные сети водоснабжения и водоотведения: от анализа технических условий и трассировки до рабочих чертежей, спецификаций и сопровождения замечаний.</p>
+          <div class="actions"><a class="btn btn-primary" href="#contact">Рассчитать проект</a><a class="btn btn-secondary" href="#scope">Посмотреть состав</a></div>
+          <div class="microfacts"><div class="microfact"><b>В1 / К1</b><span>водоснабжение и канализация</span></div><div class="microfact"><b>СПб + ЛО</b><span>зона работы</span></div><div class="microfact"><b>Под ключ</b><span>от ТУ до стройки</span></div></div>
         </div>
-        <div class="hero-visual">
-          <div class="orb">
-            <div class="orb-content">
-              <div>
-                <h2>Проектируем будущую систему</h2>
-                <p>Технические условия определяют параметры будущего подключения и требования к проекту.</p>
-              </div>
-            </div>
-          </div>
-          <div class="floating-badge one">💧 Водоснабжение</div>
-          <div class="floating-badge two">🌊 Водоотведение</div>
-          <div class="floating-badge three">📄 Трасса и узлы подключения</div>
+        <div class="blueprint" aria-label="Схема проектируемой наружной сети">
+          <span class="bp-label bp-a">ТОЧКА ПОДКЛЮЧЕНИЯ</span><span class="bp-label bp-b">КАМЕРА / КОЛОДЕЦ</span><span class="bp-label bp-c">ВВОД В ОБЪЕКТ</span><span class="bp-label bp-d">ПРОФИЛЬ ТРАССЫ</span>
+          <svg viewBox="0 0 560 520" role="img">
+            <defs><linearGradient id="pipe" x1="0" x2="1"><stop stop-color="#5ed3e8"/><stop offset="1" stop-color="#efbd75"/></linearGradient><filter id="glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+            <path d="M60 105 H210 V205 H355 V315 H500" fill="none" stroke="url(#pipe)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"/>
+            <path d="M80 390 C170 330 265 450 465 375" fill="none" stroke="#9cecff" stroke-width="3" stroke-dasharray="10 10" opacity=".7"/>
+            <g fill="#071522" stroke="#9cecff" stroke-width="4"><circle cx="60" cy="105" r="16"/><circle cx="210" cy="205" r="16"/><circle cx="355" cy="315" r="16"/><circle cx="500" cy="315" r="16"/></g>
+            <g stroke="#5ed3e8" stroke-width="2" opacity=".6"><path d="M40 75 H125"/><path d="M320 175 H500"/><path d="M390 345 H525"/><path d="M65 420 H235"/></g>
+            <g fill="none" stroke="#efbd75" stroke-width="3"><rect x="450" y="255" width="80" height="115" rx="5"/><path d="M450 280 L490 245 L530 280"/></g>
+            <g fill="#9cecff" font-size="12" font-family="monospace"><text x="44" y="140">Ø110 PE100</text><text x="230" y="190">L=47.5 м</text><text x="300" y="350">i=0.012</text></g>
+          </svg>
+          <div class="bp-note"><span>Схема условная</span><span>Рабочая документация</span></div>
         </div>
       </div>
     </section>
 
-    <section id="when-needed">
-      <div class="container">
-        <div class="section-header">
-          <div class="section-eyebrow">Когда требуется проектирование</div>
-          <h2 class="section-title">Проект необходим перед строительством и подключением сетей</h2>
-          <p class="section-sub">Документ фиксирует допустимую нагрузку, точку подключения и требования ресурсоснабжающей организации.</p>
-        </div>
-        <div class="grid-3">
-          <div class="card"><h3>Новое строительство</h3><p>Для жилых домов, коммерческих зданий, производственных и инфраструктурных объектов.</p></div>
-          <div class="card"><h3>Реконструкция объекта</h3><p>При изменении назначения, площади, состава помещений или инженерных решений.</p></div>
-          <div class="card"><h3>Увеличение нагрузки</h3><p>Когда существующих объёмов водоснабжения или водоотведения недостаточно.</p></div>
-          <div class="card"><h3>Отдельное помещение</h3><p>Для магазинов, кафе, офисов, складов и других коммерческих помещений.</p></div>
-          <div class="card"><h3>Переподключение сетей</h3><p>При переносе точки подключения, изменении схемы или переустройстве коммуникаций.</p></div>
-          <div class="card"><h3>Подготовка проекта</h3><p>проект служат исходным документом для разработки проектных решений по наружным сетям.</p></div>
-        </div>
-      </div>
-    </section>
+    <section class="section alt" id="scope"><div class="container"><div class="section-head"><div class="section-tag">01 · Результат работы</div><div><h2>Не просто чертёж, а комплект решений для реализации</h2><p class="section-intro">Состав документации формируем под технические условия, объект и требования согласующих организаций.</p></div></div><div class="deliverables">
+      <article class="deliverable"><div class="num">01</div><div><h3>План трассы</h3><p>Привязка проектируемых сетей, точек подключения, колодцев, камер и вводов к объекту.</p></div></article>
+      <article class="deliverable"><div class="num">02</div><div><h3>Продольные профили</h3><p>Отметки, уклоны, глубины заложения, пересечения с существующими коммуникациями.</p></div></article>
+      <article class="deliverable"><div class="num">03</div><div><h3>Узлы и детали</h3><p>Технические решения по врезке, арматуре, колодцам, футлярам и защите трубопроводов.</p></div></article>
+      <article class="deliverable"><div class="num">04</div><div><h3>Спецификация</h3><p>Материалы, оборудование и объёмы, необходимые для сметы и последующего строительства.</p></div></article>
+    </div></div></section>
 
-    <section id="services">
-      <div class="container">
-        <div class="section-header">
-          <div class="section-eyebrow">Что входит в проектирование</div>
-          <h2 class="section-title">Разработка проекта наружных инженерных сетей</h2>
-          <p class="section-sub">Берём на себя подготовительную работу, чтобы заявка содержала корректные сведения об объекте и планируемом потреблении.</p>
-        </div>
-        <div class="grid-3">
-          <div class="card"><h3>Анализ задачи</h3><p>Уточняем назначение объекта, параметры подключения, границы проектирования и требования заказчика.</p></div>
-          <div class="card"><h3>Проверка исходных данных</h3><p>Изучаем технические условия, топографическую съёмку, архитектурные решения и сведения о нагрузках.</p></div>
-          <div class="card"><h3>Инженерные расчёты</h3><p>Определяем расчётные расходы, диаметры трубопроводов, отметки и режимы работы сетей.</p></div>
-          <div class="card"><h3>Трассировка сетей</h3><p>Разрабатываем оптимальный маршрут с учётом участка, существующих коммуникаций и точки подключения.</p></div>
-          <div class="card"><h3>Разработка документации</h3><p>Готовим планы, профили, узлы, спецификации и пояснительные материалы.</p></div>
-          <div class="card"><h3>Согласование решений</h3><p>Сопровождаем рассмотрение проекта и корректируем документацию по обоснованным замечаниям.</p></div>
-          <div class="card"><h3>Водоснабжение</h3><p>Работаем с условиями подключения объекта к централизованным сетям холодного водоснабжения.</p></div>
-          <div class="card"><h3>Водоотведение</h3><p>Сопровождаем получение условий для отвода хозяйственно-бытовых и иных стоков.</p></div>
-          <div class="card"><h3>Реализация под ключ</h3><p>При необходимости переходим к строительству сетей, исполнительной документации и сдаче объекта.</p></div>
-        </div>
-      </div>
-    </section>
+    <section class="section" id="process"><div class="container"><div class="section-head"><div class="section-tag">02 · Процесс</div><div><h2>Пять этапов от исходных данных до готового проекта</h2><p class="section-intro">Каждый этап снижает риск замечаний, переделок и неожиданных затрат на строительстве.</p></div></div><div class="timeline">
+      <div class="step"><span class="dot"></span><b>Аудит исходных данных</b><p>Изучаем ТУ, топосъёмку, документы и ограничения площадки.</p></div><div class="step"><span class="dot"></span><b>Трассировка</b><p>Выбираем технически и экономически обоснованный маршрут.</p></div><div class="step"><span class="dot"></span><b>Расчёты</b><p>Определяем диаметры, расходы, уклоны и рабочие параметры.</p></div><div class="step"><span class="dot"></span><b>Комплект чертежей</b><p>Готовим планы, профили, узлы, ведомости и спецификации.</p></div><div class="step"><span class="dot"></span><b>Сопровождение</b><p>Отрабатываем замечания и подготавливаем проект к следующему этапу.</p></div>
+    </div></div></section>
 
-    <section id="steps">
-      <div class="container">
-        <div class="section-header">
-          <div class="section-eyebrow">Этапы проектирования</div>
-          <h2 class="section-title">От исходных данных до готовой проектной документацииной документации</h2>
-          <p class="section-sub">Последовательно проверяем объект, готовим заявку и сопровождаем её рассмотрение.</p>
-        </div>
-        <div class="card">
-          <div class="timeline">
-            <div class="step"><div class="step-number">01</div><h3>Консультация</h3><p>Уточняем задачу, адрес и характеристики объекта.</p></div>
-            <div class="step"><div class="step-number">02</div><h3>Проверка документов</h3><p>Определяем достаточность исходных материалов и полномочий заявителя.</p></div>
-            <div class="step"><div class="step-number">03</div><h3>Расчёт потребности</h3><p>Формируем сведения о требуемых объёмах воды и водоотведения.</p></div>
-            <div class="step"><div class="step-number">04</div><h3>Подготовка заявки</h3><p>Заполняем данные и комплектуем приложения.</p></div>
-            <div class="step"><div class="step-number">05</div><h3>Подача документов</h3><p>Направляем комплект на рассмотрение в установленном порядке.</p></div>
-            <div class="step"><div class="step-number">06</div><h3>Сопровождение</h3><p>Отслеживаем статус и отрабатываем запросы на дополнительные сведения.</p></div>
-            <div class="step"><div class="step-number">07</div><h3>Получение и разбор проект</h3><p>Передаём документ и поясняем дальнейший маршрут проектирования и подключения.</p></div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <section class="section alt"><div class="container"><div class="section-head"><div class="section-tag">03 · Старт проекта</div><div><h2>Что нужно на входе</h2><p class="section-intro">Чем полнее исходные данные, тем точнее срок и стоимость. Недостающие материалы поможем определить и собрать.</p></div></div><div class="source-grid"><div class="checklist"><h3>Базовый комплект</h3><ul><li>Действующие технические условия</li><li>Топографическая съёмка территории</li><li>План или схема объекта</li><li>Расчётные нагрузки и назначение объекта</li><li>Правоустанавливающие документы</li><li>Сведения о существующих коммуникациях</li></ul></div><div class="risk-card"><h3>Почему нельзя начинать «с линии на плане»</h3><p>Без проверки исходных данных проект рискует столкнуться с пересечениями, неверными отметками, несоответствием ТУ и дорогостоящей переделкой на этапе согласования или строительства.</p><div class="risk-meter"><div class="meter-row"><span>Полнота данных</span><span class="meter"><i style="width:88%"></i></span></div><div class="meter-row"><span>Согласуемость</span><span class="meter"><i style="width:78%"></i></span></div><div class="meter-row"><span>Готовность к стройке</span><span class="meter"><i style="width:92%"></i></span></div></div></div></div></div></section>
 
-    <section>
-      <div class="container">
-        <div class="section-header">
-          <div class="section-eyebrow">От чего зависит проект</div>
-          <h2 class="section-title">Объём проектирования зависит от объекта, трассы и исходных данных</h2>
-          <p class="section-sub">Точный состав работ определяется после проверки исходных данных, статуса заявителя и характеристик объекта.</p>
-        </div>
-        <div class="grid-4 cost-grid">
-          <div class="card"><strong>Тип и назначение объекта</strong><p>Тип объекта влияет на требуемую нагрузку и объём подготовки.</p></div>
-          <div class="card"><strong>Планируемая нагрузка</strong><p>От объёма потребления зависит сложность будущих сетей и расчётов.</p></div>
-          <div class="card"><strong>Наличие исходных сведений</strong><p>Чем дальше точка, тем больше может потребоваться строительных и согласовательных работ.</p></div>
-          <div class="card"><strong>Статус земельного участка</strong><p>Длина трассы оказывает влияние на объём монтажа и восстановительных работ.</p></div>
-          <div class="card"><strong>Полномочия заявителя</strong><p>Глубина влияет на технологию прокладки и объём земляных работ.</p></div>
-          <div class="card"><strong>Необходимость расчётов</strong><p>Бестраншейная прокладка может потребоваться при пересечении дорог и коммуникаций.</p></div>
-          <div class="card"><strong>Запросы на уточнение</strong><p>Сложность взаимодействия с различными структурами влияет на сроки и стоимость.</p></div>
-          <div class="card"><strong>Сложность существующей ситуации</strong><p>При необходимости потребуется дополнительная работа по восстановлению покрытия и территории.</p></div>
-        </div>
-      </div>
-    </section>
+    <section class="section" id="packages"><div class="container"><div class="section-head"><div class="section-tag">04 · Формат работы</div><div><h2>Выберите нужную глубину сопровождения</h2><p class="section-intro">Объём фиксируем после анализа исходных данных и задачи объекта.</p></div></div><div class="packages"><article class="package"><h3>Проект</h3><p>Для заказчика, который самостоятельно организует согласования и стройку.</p><ul><li>Анализ исходных данных</li><li>Проектная документация</li><li>Спецификация материалов</li></ul></article><article class="package featured"><span class="badge">Оптимально</span><h3>Проект + согласование</h3><p>Разработка проекта и сопровождение рассмотрения до снятия замечаний.</p><ul><li>Всё из пакета «Проект»</li><li>Подача и сопровождение</li><li>Корректировки по замечаниям</li></ul></article><article class="package"><h3>Полный цикл</h3><p>От технических условий и проекта до строительства и подготовки к сдаче.</p><ul><li>ТУ и исходные данные</li><li>Проектирование и согласование</li><li>Строительство сетей</li></ul></article></div></div></section>
 
-    <section>
-      <div class="container">
-        <div class="section-header">
-          <div class="section-eyebrow">Преимущества работы с нами</div>
-          <h2 class="section-title">Почему комплексное проектирование снижает риски на стройке и согласовании</h2>
-        </div>
-        <div class="grid-3">
-          <div class="card"><h3>Один ответственный за комплект документов</h3><p>Один подрядчик ведёт все работы без постоянного поиска отдельных специалистов.</p></div>
-          <div class="card"><h3>Понятный перечень исходных данных</h3><p>Понимаем, за что платите, и фиксируем объём работ заранее.</p></div>
-          <div class="card"><h3>Последовательные этапы сопровождения</h3><p>Каждый шаг идёт по понятной схеме, с контролем и отчётностью.</p></div>
-          <div class="card"><h3>Практика работы с технической документацией</h3><p>Учитываем реальную практику работы с эксплуатационными и согласующими структурами.</p></div>
-          <div class="card"><h3>Возможность продолжить работу до подключения</h3><p>Следим за процессом до завершения и передачи объекта в эксплуатацию.</p></div>
-          <div class="card"><h3>Контроль комплектности материалов</h3><p>Работы выполняются в рамках договорных обязательств и технического контроля.</p></div>
-        </div>
-      </div>
-    </section>
+    <section class="section alt" id="faq"><div class="container"><div class="section-head"><div class="section-tag">05 · FAQ</div><div><h2>Частые вопросы о проектировании</h2></div></div><div class="faq">
+      <div class="faq-item"><button class="faq-question" type="button"><span>Можно ли начать проект без технических условий?</span><span>⌄</span></button><div class="faq-answer">Предварительную трассировку выполнить можно, но полноценный проект подключения обычно требует действующих технических условий и проверенных исходных данных.</div></div>
+      <div class="faq-item"><button class="faq-question" type="button"><span>Проектируете водоснабжение и канализацию одновременно?</span><span>⌄</span></button><div class="faq-answer">Да. Состав проекта может включать наружное водоснабжение, хозяйственно-бытовую канализацию и другие решения, предусмотренные заданием и техническими условиями.</div></div>
+      <div class="faq-item"><button class="faq-question" type="button"><span>От чего зависит стоимость?</span><span>⌄</span></button><div class="faq-answer">От протяжённости и сложности трассы, числа пересечений, состава исходных данных, необходимости изысканий и объёма сопровождения согласований.</div></div>
+      <div class="faq-item"><button class="faq-question" type="button"><span>Можно ли заказать дальнейшее строительство?</span><span>⌄</span></button><div class="faq-answer">Да. После проектирования можем продолжить работу: согласование, строительство, исполнительная документация и подготовка объекта к сдаче.</div></div>
+    </div></div></section>
 
-    <section>
-      <div class="container">
-        <div class="section-header">
-          <div class="section-eyebrow">Исходные данные для проектирования</div>
-          <h2 class="section-title">Собираем материалы для разработки проекта</h2>
-          <p class="section-sub">Окончательный перечень определяется после изучения объекта и его особенностей.</p>
-        </div>
-        <div class="documents-list">
-          <div class="doc-item"><span class="dot"></span><div><strong>Правоустанавливающие документы</strong><p>Сведения о праве собственности или ином основании для использования участка или помещения.</p></div></div>
-          <div class="doc-item"><span class="dot"></span><div><strong>Ситуационный план</strong><p>План участка и его окружающей инфраструктуры для понимания расположения объекта.</p></div></div>
-          <div class="doc-item"><span class="dot"></span><div><strong>Ситуационный план и схема расположения</strong><p>Помогают идентифицировать объект и предполагаемое место подключения.</p></div></div>
-          <div class="doc-item"><span class="dot"></span><div><strong>Сведения об объекте</strong><p>Тип здания, назначение, этажность, планируемые нагрузки и другие проектные данные.</p></div></div>
-          <div class="doc-item"><span class="dot"></span><div><strong>Расчётные объёмы водоснабжения и водоотведения</strong><p>Используются для определения запрашиваемой нагрузки и параметров будущего подключения.</p></div></div>
-          <div class="doc-item"><span class="dot"></span><div><strong>Доверенность для представления интересов</strong><p>При необходимости представляем интересы заказчика в согласовательных и технических процедурах.</p></div></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="faq">
-      <div class="container">
-        <div class="section-header">
-          <div class="section-eyebrow">FAQ</div>
-          <h2 class="section-title">Ответы на самые частые вопросы</h2>
-        </div>
-        <div class="faq-list">
-          <div class="faq-item">
-            <button class="faq-question" type="button"><span>Что такое проектная документация?</span><span class="faq-toggle">⌄</span></button>
-            <div class="faq-answer">Это документ с требованиями и параметрами, которые необходимо учитывать при проектировании и дальнейшем подключении объекта к сетям водоснабжения и водоотведения.</div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question" type="button"><span>Кто может подать заявку на получение проект?</span><span class="faq-toggle">⌄</span></button>
-            <div class="faq-answer">Заявителем может быть собственник объекта или земельного участка, арендатор при наличии необходимых полномочий либо уполномоченный представитель по доверенности.</div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question" type="button"><span>Какие документы нужны для разработки проекта?</span><span class="faq-toggle">⌄</span></button>
-            <div class="faq-answer">Состав документов зависит от объекта и статуса заявителя. Обычно требуются правоустанавливающие документы, сведения об объекте, ситуационный план, расчёт предполагаемой нагрузки и документы представителя.</div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question" type="button"><span>Можно ли получить проект для уже построенного объекта?</span><span class="faq-toggle">⌄</span></button>
-            <div class="faq-answer">Да. Возможность и порядок зависят от характеристик объекта, существующих сетей и требуемых объёмов водоснабжения и водоотведения.</div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question" type="button"><span>Вы сопровождаете только получение проект или весь процесс подключения?</span><span class="faq-toggle">⌄</span></button>
-            <div class="faq-answer">Можно заказать как отдельное сопровождение проектирования сетей, так и полный комплекс: проектирование, согласование, строительство и сдачу сетей.</div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question" type="button"><span>Работаете ли вы с юридическими лицами и застройщиками?</span><span class="faq-toggle">⌄</span></button>
-            <div class="faq-answer">Да. Работаем с собственниками, юридическими лицами, застройщиками, управляющими компаниями и представителями бизнеса.</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact">
-      <div class="container">
-        <div class="cta-wrap">
-          <div>
-            <div class="section-eyebrow">Получите предварительную оценку проектирования</div>
-            <h2 class="section-title">Оставьте заявку — оценим задачу по проектированию сетей</h2>
-            <p class="section-sub">Укажите адрес объекта, протяжённость трассы и какие исходные документы уже есть. Мы оценим состав работ и предложим следующий шаг.</p>
-            <div class="contact-list">
-              <a href="tel:+79117621468" class="contact-link"><span>📞</span><span>+7 911 762-14-68</span></a>
-              <a href="https://wa.me/79117621468?text=Здравствуйте!%20Хочу%20получить%20технические%20условия%20Водоканала" class="contact-link" target="_blank" rel="noopener"><span>💬</span><span>WhatsApp</span></a>
-              <a href="https://t.me/depot888" class="contact-link" target="_blank" rel="noopener"><span>✉️</span><span>Telegram</span></a>
-              <a href="https://max.ru/+79117621468" class="contact-link" target="_blank" rel="noopener"><span>📲</span><span>MAX</span></a>
-            </div>
-          </div>
-          <div>
-            <form id="contactForm" class="form">
-              <input type="hidden" name="service" value="Проектирование наружных сетей водоснабжения и водоотведения">
-              <input type="hidden" name="page" value="">
-              <input type="hidden" name="website" value="">
-              <div class="field">
-                <label for="name">Имя</label>
-                <input id="name" name="name" type="text" placeholder="Иван Петров" required>
-              </div>
-              <div class="field">
-                <label for="phone">Телефон</label>
-                <input id="phone" name="phone" type="tel" placeholder="+7 (___) ___-__-__" required>
-              </div>
-              <div class="field">
-                <label for="email">E-mail</label>
-                <input id="email" name="email" type="email" placeholder="you@example.ru">
-              </div>
-              <div class="field">
-                <label for="serviceSelect">Услуга</label>
-                <select id="serviceSelect" name="serviceSelect">
-                  <option value="Проектирование наружных сетей водоснабжения и водоотведения" selected>Проектирование наружных сетей водоснабжения и водоотведения</option>
-                  <option value="Подключение к Водоканалу под ключ">Подключение к Водоканалу под ключ</option>
-                  <option value="Строительство сетей">Строительство сетей</option>
-                </select>
-              </div>
-              <div class="field">
-                <label for="message">Комментарий</label>
-                <textarea id="message" name="message" placeholder="Укажите адрес, тип объекта, ориентировочную трассу и имеющиеся технические условия"></textarea>
-              </div>
-              <label class="consent">
-                <input type="checkbox" checked required>
-                <span>Согласен на обработку персональных данных в соответствии с политикой конфиденциальности.</span>
-              </label>
-              <button type="submit" class="btn btn-primary submit-btn">Отправить заявку</button>
-            </form>
-            <div class="form-success" id="formSuccess">
-              <strong>Заявка отправлена</strong>
-              <p>Мы свяжемся с вами в ближайшее время и уточним дальнейшие шаги.</p>
-            </div>
-            <div class="form-error" id="formError"></div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <section class="section" id="contact"><div class="container"><div class="contact-wrap"><div class="contact-copy"><div class="section-tag">Расчёт проекта</div><h2>Расскажите об объекте</h2><p>Укажите адрес, тип объекта, примерную длину трассы и какие документы уже есть. Мы предложим состав работ и следующий шаг.</p><div class="contact-links"><a href="tel:+79117621468">☎ +7 911 762-14-68</a><a href="https://wa.me/79117621468?text=Здравствуйте!%20Нужно%20проектирование%20наружных%20сетей" target="_blank" rel="noopener">WhatsApp</a><a href="https://t.me/depot888" target="_blank" rel="noopener">Telegram</a></div></div><div>
+      <form id="contactForm" class="form"><input type="hidden" name="service" value="Проектирование наружных сетей водоснабжения и водоотведения"><input type="hidden" name="page" value=""><input type="hidden" name="website" value="">
+      <div class="field"><label for="name">Имя</label><input id="name" name="name" type="text" placeholder="Иван Петров" required></div><div class="field"><label for="phone">Телефон</label><input id="phone" name="phone" type="tel" placeholder="+7 (___) ___-__-__" required></div><div class="field"><label for="email">E-mail</label><input id="email" name="email" type="email" placeholder="you@example.ru"></div><div class="field"><label for="serviceSelect">Услуга</label><select id="serviceSelect" name="serviceSelect"><option value="Проектирование наружных сетей водоснабжения и водоотведения" selected>Проектирование наружных сетей</option><option value="Подключение к Водоканалу под ключ">Подключение к Водоканалу</option><option value="Получение технических условий Водоканала">Получение технических условий</option></select></div><div class="field full"><label for="message">Комментарий</label><textarea id="message" name="message" placeholder="Адрес, тип объекта, длина трассы, наличие ТУ и топосъёмки"></textarea></div><label class="consent"><input type="checkbox" checked required><span>Согласен на обработку персональных данных.</span></label><button type="submit" class="btn btn-primary submit-btn">Отправить заявку</button></form><div class="form-success" id="formSuccess"><strong>Заявка отправлена</strong><p>Мы свяжемся с вами и уточним исходные данные.</p></div><div class="form-error" id="formError"></div>
+    </div></div></div></section>
   </main>
-
-  <div class="floating-actions">
-    <a href="https://wa.me/79117621468?text=Здравствуйте!%20Хочу%20получить%20технические%20условия%20Водоканала" class="fab wa" target="_blank" rel="noopener" aria-label="WhatsApp"></a>
-    <a href="https://t.me/depot888" class="fab tg" target="_blank" rel="noopener" aria-label="Telegram"></a>
-    <a href="https://max.ru/+79117621468" class="fab max" target="_blank" rel="noopener" aria-label="MAX"></a>
-    <a href="tel:+79117621468" class="fab call" aria-label="Позвонить"></a>
-  </div>
-
-  <footer>
-    <div class="container footer-grid">
-      <div>
-        <h4>СПК Смарт</h4>
-        <p style="color:rgba(244,249,252,0.72)">Проектирование сетей и сопровождение подключения объектов к сетям Водоканала Санкт-Петербурга и Ленинградской области.</p>
-      </div>
-      <div>
-        <h4>Навигация</h4>
-        <ul>
-          <li><a href="#services">Что входит</a></li>
-          <li><a href="#steps">Этапы</a></li>
-          <li><a href="#faq">FAQ</a></li>
-          <li><a href="/tehnicheskie-usloviya-vodokanala/">Получение технических условий</a></li>
-          <li><a href="/podklyuchenie-k-vodokanalu/">Подключение под ключ</a></li>
-          <li><a href="#contact">Контакты</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Контакты</h4>
-        <ul>
-          <li><a href="tel:+79117621468">+7 911 762-14-68</a></li>
-          <li><a href="mailto:9224713@mail.ru">9224713@mail.ru</a></li>
-          <li><a href="https://wa.me/79117621468" target="_blank" rel="noopener">WhatsApp</a></li>
-          <li><a href="https://t.me/depot888" target="_blank" rel="noopener">Telegram</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="container copy">© 2026 ООО «СПК Смарт» · Санкт-Петербург · Ленинградская область</div>
-  </footer>
-
+  <div class="floating-actions"><a href="https://wa.me/79117621468?text=Здравствуйте!%20Нужно%20проектирование%20наружных%20сетей" class="fab wa" target="_blank" rel="noopener" aria-label="WhatsApp"></a><a href="https://t.me/depot888" class="fab tg" target="_blank" rel="noopener" aria-label="Telegram"></a><a href="https://max.ru/+79117621468" class="fab max" target="_blank" rel="noopener" aria-label="MAX"></a><a href="tel:+79117621468" class="fab call" aria-label="Позвонить"></a></div>
+  <footer><div class="container footer-grid"><div><h4>СПК Смарт</h4><p style="color:var(--muted)">Проектирование, согласование и строительство наружных сетей водоснабжения и водоотведения в Санкт-Петербурге и Ленинградской области.</p></div><div><h4>Услуги</h4><ul><li><a href="/tehnicheskie-usloviya-vodokanala/">Технические условия</a></li><li><a href="/podklyuchenie-k-vodokanalu/">Подключение под ключ</a></li><li><a href="#scope">Состав проекта</a></li></ul></div><div><h4>Контакты</h4><ul><li><a href="tel:+79117621468">+7 911 762-14-68</a></li><li><a href="mailto:9224713@mail.ru">9224713@mail.ru</a></li><li><a href="https://t.me/depot888">Telegram</a></li></ul></div></div><div class="container copy">© 2026 ООО «СПК Смарт» · Санкт-Петербург · Ленинградская область</div></footer>
   <script>
     const form = document.getElementById('contactForm');
     const formSuccess = document.getElementById('formSuccess');
