@@ -2607,9 +2607,14 @@
 
 /* Final homepage anchor/header fixes */
 html{scroll-padding-top:96px}
-#service-navigator,#about,#services,#process,#cases,#faq,#contact{scroll-margin-top:96px}
+#about,#services,#process,#cases,#faq,#contact{scroll-margin-top:96px}
 .hero-service-links .hero-service-link{display:inline-flex!important;margin-top:0!important}
 @media(max-width:620px){.hero-service-links .hero-service-link{display:flex!important}}
+
+/* Compact homepage service links: stay inside the hero and never overlap sections */
+.hero-service-links{position:static!important;z-index:auto!important}
+.hero{overflow:hidden}
+@media(max-width:980px){.hero-service-links{max-width:620px}}
 
 </style>
 </head>
@@ -2759,7 +2764,7 @@ html{scroll-padding-top:96px}
           <span>Получить консультацию</span>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
         </a>
-        <a href="#service-navigator" class="btn btn-ghost" id="serviceNavigatorButton">Выбрать задачу</a>
+        <a href="#services" class="btn btn-ghost">Все услуги</a>
       </div>
       <nav class="hero-service-links" aria-label="Основные услуги">
         <a class="hero-service-link" href="/podklyuchenie-k-vodokanalu/">Подключение под ключ</a>
@@ -2800,21 +2805,6 @@ html{scroll-padding-top:96px}
       <div class="floating-tag t1">💧 Водоснабжение</div>
       <div class="floating-tag t2">🌊 Водоотведение</div>
       <div class="floating-tag t3">⚡ ГНБ-прокол</div>
-    </div>
-  </div>
-</section>
-
-<section class="home-service-navigator" id="service-navigator" aria-labelledby="service-navigator-title">
-  <div class="task-shell">
-    <div class="task-head">
-      <div><div class="task-kicker">Навигатор по услугам</div><h2 id="service-navigator-title">С какой задачи<br>начинаем?</h2></div>
-      <p>Не обязательно заранее разбираться во всей процедуре. Выберите текущий этап — покажем маршрут работ и следующий шаг.</p>
-    </div>
-    <div class="task-grid">
-      <a class="task-card featured" href="/podklyuchenie-k-vodokanalu/"><div class="task-no">01 · ПОЛНЫЙ ЦИКЛ</div><div class="task-icon">⌁</div><h3>Подключить объект под ключ</h3><p>От исходных данных и договора до строительства, врезки и ввода сетей.</p><div class="task-arrow">Открыть маршрут <span>→</span></div></a>
-      <a class="task-card" href="/tehnicheskie-usloviya-vodokanala/"><div class="task-no">02 · СТАРТ</div><div class="task-icon">▤</div><h3>Получить технические условия</h3><p>Подготовим запрос, проверим исходные данные и сопроводим получение документа.</p><div class="task-arrow">Состав документов <span>→</span></div></a>
-      <a class="task-card" href="/proektirovanie-setey-vodosnabzheniya/"><div class="task-no">03 · ИНЖЕНЕРИЯ</div><div class="task-icon">⌗</div><h3>Разработать проект сетей</h3><p>Трасса, профили, узлы, спецификации и технические решения по НВК.</p><div class="task-arrow">Посмотреть состав <span>→</span></div></a>
-      <a class="task-card" href="/soglasovanie-proekta-vodokanala/"><div class="task-no">04 · СОГЛАСОВАНИЕ</div><div class="task-icon">✓</div><h3>Согласовать проект</h3><p>Проверим комплект, отработаем замечания и доведём документацию до согласования.</p><div class="task-arrow">Как проходит работа <span>→</span></div></a>
     </div>
   </div>
 </section>
@@ -4127,18 +4117,5 @@ html{scroll-padding-top:96px}
 </script>
 
 
-<script>
-(function(){
-  var button=document.getElementById('serviceNavigatorButton');
-  var target=document.getElementById('service-navigator');
-  if(button&&target){
-    button.addEventListener('click',function(event){
-      event.preventDefault();
-      target.scrollIntoView({behavior:'smooth',block:'start'});
-      if(history.replaceState){history.replaceState(null,'','#service-navigator');}
-    });
-  }
-})();
-</script>
 </body>
 </html>
