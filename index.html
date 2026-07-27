@@ -2571,6 +2571,31 @@
       right: max(14px, env(safe-area-inset-right));
     }
   }
+
+/* 2026 homepage service navigator */
+.hero-service-link{display:none!important}
+.home-service-navigator{position:relative;padding:34px 0 92px;background:linear-gradient(180deg,#0a2940 0%,#071d2d 100%);overflow:hidden}
+.home-service-navigator:before{content:"";position:absolute;inset:0;background:linear-gradient(rgba(108,195,231,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(108,195,231,.035) 1px,transparent 1px);background-size:42px 42px;mask-image:linear-gradient(to bottom,transparent,#000 28%,#000)}
+.task-shell{width:min(1240px,calc(100% - 40px));margin:auto;position:relative;z-index:1}
+.task-head{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:24px}
+.task-kicker{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#73c7ea;font-weight:800;margin-bottom:10px}
+.task-head h2{font-family:Georgia,serif;font-size:clamp(34px,4vw,58px);line-height:1.02;margin:0;color:#fff;font-weight:500}
+.task-head p{max-width:500px;color:#a9c6d7;font-size:16px;line-height:1.7;margin:0}
+.task-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.task-card{position:relative;min-height:250px;padding:26px;border:1px solid rgba(154,214,239,.18);border-radius:24px;background:linear-gradient(145deg,rgba(18,59,84,.94),rgba(7,31,48,.98));text-decoration:none;color:#fff;overflow:hidden;transition:.28s ease;display:flex;flex-direction:column}
+.task-card:before{content:"";position:absolute;width:150px;height:150px;border-radius:50%;right:-70px;top:-70px;background:radial-gradient(circle,rgba(108,202,239,.22),transparent 68%)}
+.task-card:hover{transform:translateY(-7px);border-color:rgba(226,174,104,.72);box-shadow:0 24px 50px rgba(0,0,0,.28)}
+.task-no{font:700 11px/1 monospace;letter-spacing:.16em;color:#e1ae6e;margin-bottom:38px}
+.task-icon{width:48px;height:48px;border-radius:15px;background:rgba(115,199,234,.1);display:grid;place-items:center;font-size:23px;margin-bottom:18px;border:1px solid rgba(115,199,234,.16)}
+.task-card h3{font-size:20px;line-height:1.22;margin:0 0 12px;color:#fff}
+.task-card p{font-size:14px;line-height:1.55;color:#a9c6d7;margin:0 0 20px}
+.task-arrow{margin-top:auto;color:#e5b270;font-weight:800;font-size:13px;display:flex;gap:9px;align-items:center}
+.task-card.featured{background:linear-gradient(145deg,#dba666,#b97b3e);border-color:transparent;color:#081c2a}
+.task-card.featured h3,.task-card.featured .task-arrow{color:#081c2a}.task-card.featured p{color:rgba(8,28,42,.78)}.task-card.featured .task-no{color:rgba(8,28,42,.68)}.task-card.featured .task-icon{background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.24)}
+.hero-choice-note{display:flex;align-items:center;gap:11px;color:#a9c6d7;font-size:13px;margin:18px 0 0}.hero-choice-note span:first-child{width:7px;height:7px;border-radius:50%;background:#6bc8ee;box-shadow:0 0 0 6px rgba(107,200,238,.1)}
+@media(max-width:980px){.task-grid{grid-template-columns:repeat(2,1fr)}.task-head{align-items:start;flex-direction:column}.home-service-navigator{padding-top:16px}}
+@media(max-width:620px){.task-shell{width:min(100% - 24px,1240px)}.task-grid{grid-template-columns:1fr}.task-card{min-height:220px}.task-head h2{font-size:36px}.home-service-navigator{padding-bottom:65px}}
+
 </style>
 </head>
 <body>
@@ -2699,15 +2724,7 @@
       <p>
         Подключаем объекты к сетям водоснабжения и водоотведения ГУП «Водоканал СПб» и «Водоканал ЛО». Полный комплекс работ — от получения исходной разрешительной документации до ввода готового объекта в эксплуатацию.
       </p>
-      <a href="/podklyuchenie-k-vodokanalu/" class="hero-service-link">
-        Подробнее об услуге
-      </a>
-      <a href="/tehnicheskie-usloviya-vodokanala/" class="hero-service-link" style="margin-left:12px;">
-        Получение технических условий
-      </a>
-      <a href="/proektirovanie-setey-vodosnabzheniya/" class="hero-service-link" style="margin-left:12px;">
-        Проектирование сетей
-      </a>
+      <div class="hero-choice-note"><span></span><span>Выберите задачу ниже — покажем подходящий маршрут работ</span></div>
       <div class="hero-stats">
         <div class="stat">
           <div class="stat-num" data-count="10">10</div>
@@ -2727,7 +2744,7 @@
           <span>Получить консультацию</span>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
         </a>
-        <a href="#services" class="btn btn-ghost">Наши услуги</a>
+        <a href="#service-navigator" class="btn btn-ghost">Выбрать задачу</a>
       </div>
       <div class="messenger-quick">
         <a href="https://wa.me/79117621468?text=Здравствуйте!%20Хочу%20уточнить%20по%20подключению%20к%20Водоканалу" class="msg-btn wa" target="_blank" rel="noopener">
