@@ -3,18 +3,33 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<!-- Yandex.Metrika counter -->
-<script type="text/javascript">
-    (function(m,e,t,r,i,k,a){
-        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-        m[i].l=1*new Date();
-        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=110924726', 'ym');
-
-    ym(110924726, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+<!-- Yandex.Metrika: загружается после согласия пользователя, чтобы не блокировать первый экран -->
+<script>
+  window.ym = window.ym || function(){ (window.ym.a = window.ym.a || []).push(arguments); };
+  window.ym.l = Date.now();
+  window.loadYandexMetrika = function loadYandexMetrika() {
+    if (window.__ymLoaded) return;
+    window.__ymLoaded = true;
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://mc.yandex.ru/metrika/tag.js?id=110924726';
+    document.head.appendChild(script);
+    ym(110924726, 'init', {
+      ssr: true,
+      webvisor: true,
+      clickmap: true,
+      ecommerce: 'dataLayer',
+      referrer: document.referrer,
+      url: location.href,
+      accurateTrackBounce: true,
+      trackLinks: true
+    });
+  };
+  if (localStorage.getItem('cookies_accepted') === 'all') {
+    if ('requestIdleCallback' in window) requestIdleCallback(window.loadYandexMetrika, {timeout: 2500});
+    else window.addEventListener('load', function(){ setTimeout(window.loadYandexMetrika, 800); }, {once:true});
+  }
 </script>
-<!-- /Yandex.Metrika counter -->
 <meta name="theme-color" content="#02111f">
 <meta name="format-detection" content="telephone=no">
 <meta name="mobile-web-app-capable" content="yes">
@@ -51,7 +66,6 @@
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="manifest" href="/site.webmanifest">
 
 <!-- ======= SCHEMA.ORG — структурированные данные (Яндекс, Google) ======= -->
 <script type="application/ld+json">
@@ -3629,8 +3643,9 @@ html{scroll-padding-top:96px}
 <script>
   // ============ DEVICE DETECTION ============
   const IS_TOUCH = window.matchMedia('(hover: none), (pointer: coarse)').matches;
-  const IS_MOBILE = window.innerWidth <= 768;
-  const IS_SMALL = window.innerWidth <= 380;
+  const MOBILE_QUERY = window.matchMedia('(max-width: 768px)');
+  const IS_MOBILE = MOBILE_QUERY.matches;
+  const IS_SMALL = window.matchMedia('(max-width: 380px)').matches;
   const REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   
   // ============ CUSTOM DROPLET CURSOR (desktop only) ============
@@ -3855,7 +3870,7 @@ html{scroll-padding-top:96px}
   
   // ============ PIPELINE ANIMATION ============
   function animatePipeline() {
-    const isMobile = window.innerWidth <= 768;
+    const isMobile = MOBILE_QUERY.matches;
     
     if (!isMobile) {
       const fill = document.getElementById('pipeFill');
@@ -3920,12 +3935,12 @@ html{scroll-padding-top:96px}
   }
   
   // Re-run pipeline on breakpoint cross (debounced)
-  let lastIsMobile = window.innerWidth <= 768;
+  let lastIsMobile = MOBILE_QUERY.matches;
   let resizeTimer;
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => {
-      const nowMobile = window.innerWidth <= 768;
+      const nowMobile = MOBILE_QUERY.matches;
       if (nowMobile !== lastIsMobile && pipeline && pipeline.dataset.animated) {
         lastIsMobile = nowMobile;
         animatePipeline();
@@ -4057,12 +4072,12 @@ html{scroll-padding-top:96px}
           </p>
         </div>
         <div style="display:flex; gap:10px; flex-shrink:0; flex-wrap:wrap;">
-          <button onclick="document.getElementById('cookieBanner').remove(); localStorage.setItem('cookies_accepted','all');" style="
+          <button onclick="localStorage.setItem('cookies_accepted','all'); document.getElementById('cookieBanner').remove(); window.loadYandexMetrika();" style="
             background:linear-gradient(135deg,#d4a574,#f0c896); color:#02111f;
             border:none; padding:10px 22px; border-radius:999px;
             font-family:inherit; font-size:14px; font-weight:600; cursor:pointer;
           ">Принять все</button>
-          <button onclick="document.getElementById('cookieBanner').remove(); localStorage.setItem('cookies_accepted','necessary');" style="
+          <button onclick="localStorage.setItem('cookies_accepted','necessary'); document.getElementById('cookieBanner').remove();" style="
             background:rgba(244,249,252,0.08); color:#f4f9fc;
             border:1px solid rgba(184,224,240,0.25); padding:10px 22px; border-radius:999px;
             font-family:inherit; font-size:14px; font-weight:500; cursor:pointer;
