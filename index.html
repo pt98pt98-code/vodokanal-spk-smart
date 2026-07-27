@@ -76,19 +76,27 @@
       "@type": ["LocalBusiness", "ProfessionalService"],
       "@id": "https://spk-smart.ru/#business",
       "name": "ВодоканалСПБ — СПК Смарт",
+      "legalName": "Общество с ограниченной ответственностью «СПК Смарт»",
       "alternateName": ["СПК Смарт", "ВодоканалСПБ"],
       "url": "https://spk-smart.ru",
       "description": "Подключение объектов к сетям водоснабжения и водоотведения ГУП «Водоканал СПб» под ключ. Более 10 лет опыта, 500+ сданных объектов.",
       "telephone": "+7-911-762-14-68",
       "email": "9224713@mail.ru",
+      "taxID": "7814813872",
+      "foundingDate": "2022-09-28",
+      "identifier": [
+        {"@type": "PropertyValue", "propertyID": "ОГРН", "value": "1227800126696"},
+        {"@type": "PropertyValue", "propertyID": "КПП", "value": "781401001"}
+      ],
       "priceRange": "₽₽",
       "currenciesAccepted": "RUB",
       "paymentAccepted": "Наличные, безналичный расчёт",
       "address": {
         "@type": "PostalAddress",
+        "streetAddress": "Богатырский проспект, дом 39, корпус 1, литера А, квартира 3",
         "addressLocality": "Санкт-Петербург",
         "addressRegion": "Санкт-Петербург",
-        "postalCode": "190000",
+        "postalCode": "197372",
         "addressCountry": "RU"
       },
       "geo": {
@@ -136,6 +144,7 @@
       "@id": "https://spk-smart.ru/#website",
       "url": "https://spk-smart.ru",
       "name": "ВодоканалСПБ — СПК Смарт",
+      "legalName": "Общество с ограниченной ответственностью «СПК Смарт»",
       "description": "Подключение к сетям ГУП Водоканал СПб под ключ",
       "inLanguage": "ru-RU",
       "publisher": { "@id": "https://spk-smart.ru/#business" },
@@ -2630,6 +2639,27 @@ html{scroll-padding-top:96px}
 .hero{overflow:hidden}
 @media(max-width:980px){.hero-service-links{max-width:620px}}
 
+
+
+  /* Lighthouse: skip style/layout work for content below the fold until needed. */
+  #about, #process, #services, #why, #cases, #guarantees,
+  #after-steps, #faq, #contact, footer {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 900px;
+  }
+
+  @media (max-width: 768px) {
+    #about { contain-intrinsic-size: auto 620px; }
+    #process { contain-intrinsic-size: auto 1050px; }
+    #services { contain-intrinsic-size: auto 1500px; }
+    #why { contain-intrinsic-size: auto 900px; }
+    #cases { contain-intrinsic-size: auto 1150px; }
+    #guarantees { contain-intrinsic-size: auto 900px; }
+    #after-steps { contain-intrinsic-size: auto 850px; }
+    #faq { contain-intrinsic-size: auto 900px; }
+    #contact { contain-intrinsic-size: auto 1100px; }
+    footer { contain-intrinsic-size: auto 700px; }
+  }
 </style>
 </head>
 <body>
@@ -3528,7 +3558,7 @@ html{scroll-padding-top:96px}
         <li><a href="#faq">FAQ</a></li>
         <li><a href="#contact">Контакты</a></li>
         <li><a href="/uslugi/">Все услуги</a></li>
-        <li><a href="/politika-konfidencialnosti/">Политика конфиденциальности</a></li>
+        <li><a href="/rekvizity/">Реквизиты</a> · <a href="/politika-konfidencialnosti/">Политика конфиденциальности</a></li>
       </ul>
     </div>
     <div class="footer-col">
