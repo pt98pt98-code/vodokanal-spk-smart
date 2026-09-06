@@ -2686,6 +2686,10 @@ html{scroll-padding-top:96px}
   .spk-proof-doc h3{margin:0 0 9px;color:#fff;font-size:23px}
   .spk-proof-doc p{margin:0;color:#a9bfd6;line-height:1.6;font-size:14px}
   .spk-proof-doc a{display:inline-flex;margin-top:14px;color:#f0c58f;font-weight:700;text-decoration:none}
+  .spk-home-photo-strip{display:grid;grid-template-columns:1.15fr .85fr;gap:16px;margin-top:26px}
+  .spk-home-photo-strip .spk-real-card{min-height:300px}
+  .spk-home-photo-strip .spk-real-card img{min-height:300px}
+  @media(max-width:800px){.spk-home-photo-strip{grid-template-columns:1fr}.spk-home-photo-strip .spk-real-card,.spk-home-photo-strip .spk-real-card img{min-height:250px}}
   .spk-home-trust{margin-top:30px;padding:22px;border:1px solid rgba(255,255,255,.1);border-radius:24px;background:linear-gradient(135deg,rgba(13,43,73,.86),rgba(8,26,44,.86));display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center}
   .spk-home-trust strong{display:block;font-family:Georgia,'Times New Roman',serif;font-size:25px;color:#fff;margin-bottom:6px}
   .spk-home-trust p{margin:0;color:#a9bfd6;line-height:1.55}
@@ -3228,6 +3232,11 @@ html{scroll-padding-top:96px}
     </div>
   </div>
 
+
+    <div class="spk-home-photo-strip reveal">
+      <a class="spk-real-card" href="/kejsy/"><img src="/assets/cases/case-20.webp" alt="Подготовленная трасса инженерных сетей у капитального объекта" loading="lazy" decoding="async"><div class="spk-real-overlay"><span>Городской объект</span><strong>Подготовленная трасса сети рядом с капитальным зданием</strong></div></a>
+      <a class="spk-real-card" href="/kejsy/"><img src="/assets/cases/case-10.webp" alt="Инженерные колодцы на объекте СПК Смарт" loading="lazy" decoding="async"><div class="spk-real-overlay"><span>Инженерные узлы</span><strong>Монтаж колодцев и соединение наружной сети</strong></div></a>
+    </div>
 
     <div class="section-actions reveal" style="margin-top:24px; display:flex; justify-content:center;">
       <a href="/kejsy/" class="btn btn-ghost">Смотреть все фото и кейсы</a>
