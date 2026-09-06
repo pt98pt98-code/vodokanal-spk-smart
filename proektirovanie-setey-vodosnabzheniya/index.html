@@ -75,6 +75,38 @@
     @media(max-width:600px){.container{width:min(100% - 28px,1180px)}.topbar{height:68px}.brand{font-size:16px}.phone{padding:9px 12px!important;font-size:12px!important}.hero{padding-top:46px}.hero-grid{gap:34px}.blueprint{min-height:390px}.blueprint svg{inset:22px;width:calc(100% - 44px);height:calc(100% - 44px)}.microfacts{grid-template-columns:1fr}.form{grid-template-columns:1fr;padding:18px}.field,.field.full,.consent,.submit-btn{grid-column:1}.footer-grid{grid-template-columns:1fr}.contact-copy h2{font-size:36px}.section{padding:68px 0}.floating-actions{right:10px;bottom:10px}.fab{width:44px;height:44px}}
   </style>
 
+
+<style id="spk-real-work-style">
+  .spk-real-work{padding:56px 0;position:relative;content-visibility:auto;contain-intrinsic-size:720px}
+  .spk-real-inner{width:min(1180px,calc(100% - 32px));margin:0 auto}
+  .spk-real-head{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:24px}
+  .spk-real-kicker{font:700 11px/1.2 'JetBrains Mono',monospace;letter-spacing:.18em;text-transform:uppercase;color:#78c8f5;margin-bottom:10px}
+  .spk-real-title{margin:0;font-family:Georgia,'Times New Roman',serif;font-size:clamp(30px,4vw,48px);line-height:1.04;color:#f5f9ff}
+  .spk-real-title em{font-weight:400;color:#efbb7c}
+  .spk-real-note{max-width:520px;margin:0;color:#a9bfd6;line-height:1.65;font-size:15px}
+  .spk-real-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+  .spk-real-card{position:relative;min-height:330px;overflow:hidden;border-radius:26px;border:1px solid rgba(255,255,255,.1);background:#0c2741;box-shadow:0 20px 48px rgba(0,0,0,.22)}
+  .spk-real-card img{width:100%;height:100%;min-height:330px;object-fit:cover;display:block;transition:transform .45s ease}
+  .spk-real-card:hover img{transform:scale(1.025)}
+  .spk-real-overlay{position:absolute;inset:auto 0 0 0;padding:52px 20px 18px;background:linear-gradient(transparent,rgba(4,15,27,.9))}
+  .spk-real-overlay span{display:block;font:700 10px/1.2 'JetBrains Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#a7d9f4;margin-bottom:6px}
+  .spk-real-overlay strong{font-size:18px;line-height:1.35;color:white}
+  .spk-real-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+  .spk-real-link{display:inline-flex;align-items:center;justify-content:center;padding:13px 18px;border-radius:999px;border:1px solid rgba(255,255,255,.16);color:#eef7ff;text-decoration:none;font-weight:700;background:rgba(255,255,255,.04)}
+  .spk-real-link.primary{border-color:transparent;background:linear-gradient(135deg,#f0c58f,#d8a46d);color:#081725}
+  .spk-proof-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .spk-proof-doc{display:grid;grid-template-columns:180px 1fr;gap:20px;align-items:center;padding:20px;border-radius:26px;border:1px solid rgba(255,255,255,.1);background:linear-gradient(180deg,rgba(14,45,71,.94),rgba(8,24,40,.94));box-shadow:0 20px 48px rgba(0,0,0,.22)}
+  .spk-proof-doc img{width:180px;aspect-ratio:3/4;object-fit:cover;object-position:top;border-radius:16px;background:white}
+  .spk-proof-doc h3{margin:0 0 9px;color:#fff;font-size:23px}
+  .spk-proof-doc p{margin:0;color:#a9bfd6;line-height:1.6;font-size:14px}
+  .spk-proof-doc a{display:inline-flex;margin-top:14px;color:#f0c58f;font-weight:700;text-decoration:none}
+  .spk-home-trust{margin-top:30px;padding:22px;border:1px solid rgba(255,255,255,.1);border-radius:24px;background:linear-gradient(135deg,rgba(13,43,73,.86),rgba(8,26,44,.86));display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center}
+  .spk-home-trust strong{display:block;font-family:Georgia,'Times New Roman',serif;font-size:25px;color:#fff;margin-bottom:6px}
+  .spk-home-trust p{margin:0;color:#a9bfd6;line-height:1.55}
+  .spk-home-trust-actions{display:flex;gap:10px;flex-wrap:wrap}
+  @media(max-width:800px){.spk-real-head{display:block}.spk-real-note{margin-top:12px}.spk-real-grid,.spk-proof-grid{grid-template-columns:1fr}.spk-real-card,.spk-real-card img{min-height:270px}.spk-proof-doc{grid-template-columns:110px 1fr}.spk-proof-doc img{width:110px}.spk-home-trust{grid-template-columns:1fr}.spk-real-work{padding:42px 0}}
+</style>
+
 </head>
 <body>
   <div class="grid-bg"></div>
@@ -136,7 +168,23 @@
       <form id="contactForm" class="form"><input type="hidden" name="service" value="Проектирование наружных сетей водоснабжения и водоотведения"><input type="hidden" name="page" value=""><input type="hidden" name="website" value="">
       <div class="field"><label for="name">Имя</label><input id="name" name="name" type="text" placeholder="Иван Петров" required></div><div class="field"><label for="phone">Телефон</label><input id="phone" name="phone" type="tel" placeholder="+7 (___) ___-__-__" required></div><div class="field"><label for="email">E-mail</label><input id="email" name="email" type="email" placeholder="you@example.ru"></div><div class="field"><label for="serviceSelect">Услуга</label><select id="serviceSelect" name="serviceSelect"><option value="Проектирование наружных сетей водоснабжения и водоотведения" selected>Проектирование наружных сетей</option><option value="Подключение к Водоканалу под ключ">Подключение к Водоканалу</option><option value="Получение технических условий Водоканала">Получение технических условий</option></select></div><div class="field full"><label for="message">Комментарий</label><textarea id="message" name="message" placeholder="Адрес, тип объекта, длина трассы, наличие ТУ и топосъёмки"></textarea></div><label class="consent"><input type="checkbox" checked required><span>Согласен на обработку персональных данных.</span></label><button type="submit" class="btn btn-primary submit-btn">Отправить заявку</button></form><div class="form-success" id="formSuccess"><strong>Заявка отправлена</strong><p>Мы свяжемся с вами и уточним исходные данные.</p></div><div class="form-error" id="formError"></div>
     </div></div></div></section>
-  </main>
+  
+<section class="spk-real-work" aria-labelledby="real-work-title">
+  <div class="spk-real-inner">
+    <div class="spk-real-head">
+      <div><div class="spk-real-kicker">Реальные объекты СПК Смарт</div><h2 class="spk-real-title" id="real-work-title">Как работа выглядит <em>на объекте</em></h2></div>
+      <p class="spk-real-note">Проект должен превращаться в понятное строительное решение: диаметры, узлы, спецификация и трасса должны совпадать с тем, что реально собирается на площадке.</p>
+    </div>
+    <div class="spk-real-grid">
+      <a class="spk-real-card" href="../kejsy/"><img src="../assets/cases/case-13.webp" alt="Собранные фасонные части и запорная арматура" loading="lazy" decoding="async"><div class="spk-real-overlay"><span>Узлы по проекту</span><strong>Собранные фасонные части и запорная арматура</strong></div></a>
+      <a class="spk-real-card" href="../kejsy/"><img src="../assets/cases/case-12.webp" alt="Подготовленные трубы наружной сети на объекте" loading="lazy" decoding="async"><div class="spk-real-overlay"><span>Материалы и трасса</span><strong>Подготовленные трубы наружной сети на объекте</strong></div></a>
+    </div>
+    <div class="spk-real-actions"><a class="spk-real-link primary" href="../kejsy/">Все реальные работы →</a><a class="spk-real-link" href="../dokumenty/">Документы и допуски</a></div>
+  </div>
+</section>
+
+<section class="spk-real-work" aria-labelledby="proof-title"><div class="spk-real-inner"><div class="spk-real-head"><div><div class="spk-real-kicker">Документы и право на проектирование</div><h2 class="spk-real-title" id="proof-title">Проектирование подтверждено <em>документами</em></h2></div><p class="spk-real-note">Не перегружаем страницу сканами: показываем один актуальный документ и даём переход в полный раздел.</p></div><div class="spk-proof-grid"><div class="spk-proof-doc"><img src="../assets/documents/nopriz-2025.webp" alt="Превью выписки НОПРИЗ ООО СПК Смарт от 23 июля 2025 года" loading="lazy"><div><h3>Актуальная выписка НОПРИЗ</h3><p>Выписка от 23.07.2025 подтверждает членство ООО «СПК Смарт» в Ассоциации «Невский Кластер Проектировщиков» и право подготовки проектной документации для объектов капитального строительства, кроме особо опасных, технически сложных и уникальных объектов.</p><a href="../documents/vypiska-nopriz-spk-smart-2025.pdf" target="_blank" rel="noopener">Открыть PDF →</a></div></div><div class="spk-proof-doc"><img src="../assets/documents/sro-stroitelstvo-2023.webp" alt="Превью строительной выписки СРО ООО СПК Смарт 2023 года" loading="lazy"><div><h3>Строительная выписка СРО</h3><p>Архивная выписка от 07.04.2023 размещена как подтверждение истории членства и строительной компетенции компании на дату выдачи документа.</p><a href="../dokumenty/">Все документы →</a></div></div></div></div></section>
+</main>
   <div class="floating-actions"><a href="https://wa.me/79117621468?text=Здравствуйте!%20Нужно%20проектирование%20наружных%20сетей" class="fab wa" target="_blank" rel="noopener" aria-label="WhatsApp"></a><a href="https://t.me/depot888" class="fab tg" target="_blank" rel="noopener" aria-label="Telegram"></a><a href="https://max.ru/+79117621468" class="fab max" target="_blank" rel="noopener" aria-label="MAX"></a><a href="tel:+79117621468" class="fab call" aria-label="Позвонить"></a></div>
   <footer><div class="container footer-grid"><div><h4>СПК Смарт</h4><p style="color:var(--muted)">Проектирование, согласование и строительство наружных сетей водоснабжения и водоотведения в Санкт-Петербурге и Ленинградской области.</p></div><div><h4>Услуги</h4><ul><li><a href="/tehnicheskie-usloviya-vodokanala/">Технические условия</a></li><li><a href="/podklyuchenie-k-vodokanalu/">Подключение под ключ</a></li><li><a href="#scope">Состав проекта</a></li></ul></div><div><h4>Контакты</h4><ul><li><a href="tel:+79117621468">+7 911 762-14-68</a></li><li><a href="mailto:9224713@mail.ru">9224713@mail.ru</a></li><li><a href="https://t.me/depot888">Telegram</a></li></ul></div></div><div class="container copy">© 2026 ООО «СПК Смарт» · Санкт-Петербург · Ленинградская область</div><div style="width:min(1180px,calc(100% - 32px));margin:0 auto 28px;padding:18px 20px;border:1px solid rgba(120,190,220,.18);border-radius:16px;background:rgba(15,45,61,.72);font-family:Arial,sans-serif"><span style="color:#9dbac7;margin-right:12px">Следующий этап:</span><a href="/soglasovanie-proekta-vodokanala/" style="color:#e5b270;font-weight:800;text-decoration:none">Согласование проекта с Водоканалом →</a></div><div style="width:min(1180px,calc(100% - 32px));margin:0 auto 24px;padding:16px 18px;border:1px solid rgba(120,190,220,.18);border-radius:16px;background:rgba(15,45,61,.72);font-family:Arial,sans-serif"><span style="color:#9dbac7;margin-right:12px">Отдельная услуга:</span><a href="/podklyuchenie-kanalizatsii-vodokanala/" style="color:#e5b270;font-weight:800;text-decoration:none">Подключение канализации к Водоканалу →</a></div><div style="margin-top:12px;font-size:12px"><a href="/rekvizity/">Реквизиты</a> · <a href="/politika-konfidencialnosti/">Политика конфиденциальности</a> · <a href="/soglasie-na-obrabotku-personalnyh-dannyh/">Согласие на обработку данных</a></div></footer>
   <script>

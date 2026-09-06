@@ -2661,6 +2661,38 @@ html{scroll-padding-top:96px}
     footer { contain-intrinsic-size: auto 700px; }
   }
 </style>
+
+<style id="spk-real-work-style">
+  .spk-real-work{padding:56px 0;position:relative;content-visibility:auto;contain-intrinsic-size:720px}
+  .spk-real-inner{width:min(1180px,calc(100% - 32px));margin:0 auto}
+  .spk-real-head{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:24px}
+  .spk-real-kicker{font:700 11px/1.2 'JetBrains Mono',monospace;letter-spacing:.18em;text-transform:uppercase;color:#78c8f5;margin-bottom:10px}
+  .spk-real-title{margin:0;font-family:Georgia,'Times New Roman',serif;font-size:clamp(30px,4vw,48px);line-height:1.04;color:#f5f9ff}
+  .spk-real-title em{font-weight:400;color:#efbb7c}
+  .spk-real-note{max-width:520px;margin:0;color:#a9bfd6;line-height:1.65;font-size:15px}
+  .spk-real-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+  .spk-real-card{position:relative;min-height:330px;overflow:hidden;border-radius:26px;border:1px solid rgba(255,255,255,.1);background:#0c2741;box-shadow:0 20px 48px rgba(0,0,0,.22)}
+  .spk-real-card img{width:100%;height:100%;min-height:330px;object-fit:cover;display:block;transition:transform .45s ease}
+  .spk-real-card:hover img{transform:scale(1.025)}
+  .spk-real-overlay{position:absolute;inset:auto 0 0 0;padding:52px 20px 18px;background:linear-gradient(transparent,rgba(4,15,27,.9))}
+  .spk-real-overlay span{display:block;font:700 10px/1.2 'JetBrains Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#a7d9f4;margin-bottom:6px}
+  .spk-real-overlay strong{font-size:18px;line-height:1.35;color:white}
+  .spk-real-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+  .spk-real-link{display:inline-flex;align-items:center;justify-content:center;padding:13px 18px;border-radius:999px;border:1px solid rgba(255,255,255,.16);color:#eef7ff;text-decoration:none;font-weight:700;background:rgba(255,255,255,.04)}
+  .spk-real-link.primary{border-color:transparent;background:linear-gradient(135deg,#f0c58f,#d8a46d);color:#081725}
+  .spk-proof-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .spk-proof-doc{display:grid;grid-template-columns:180px 1fr;gap:20px;align-items:center;padding:20px;border-radius:26px;border:1px solid rgba(255,255,255,.1);background:linear-gradient(180deg,rgba(14,45,71,.94),rgba(8,24,40,.94));box-shadow:0 20px 48px rgba(0,0,0,.22)}
+  .spk-proof-doc img{width:180px;aspect-ratio:3/4;object-fit:cover;object-position:top;border-radius:16px;background:white}
+  .spk-proof-doc h3{margin:0 0 9px;color:#fff;font-size:23px}
+  .spk-proof-doc p{margin:0;color:#a9bfd6;line-height:1.6;font-size:14px}
+  .spk-proof-doc a{display:inline-flex;margin-top:14px;color:#f0c58f;font-weight:700;text-decoration:none}
+  .spk-home-trust{margin-top:30px;padding:22px;border:1px solid rgba(255,255,255,.1);border-radius:24px;background:linear-gradient(135deg,rgba(13,43,73,.86),rgba(8,26,44,.86));display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center}
+  .spk-home-trust strong{display:block;font-family:Georgia,'Times New Roman',serif;font-size:25px;color:#fff;margin-bottom:6px}
+  .spk-home-trust p{margin:0;color:#a9bfd6;line-height:1.55}
+  .spk-home-trust-actions{display:flex;gap:10px;flex-wrap:wrap}
+  @media(max-width:800px){.spk-real-head{display:block}.spk-real-note{margin-top:12px}.spk-real-grid,.spk-proof-grid{grid-template-columns:1fr}.spk-real-card,.spk-real-card img{min-height:270px}.spk-proof-doc{grid-template-columns:110px 1fr}.spk-proof-doc img{width:110px}.spk-home-trust{grid-template-columns:1fr}.spk-real-work{padding:42px 0}}
+</style>
+
 </head>
 <body>
 <noscript><div><img src="https://mc.yandex.ru/watch/110924726" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
@@ -2726,7 +2758,7 @@ html{scroll-padding-top:96px}
       <ul class="nav-links">
         <li><a href="#services">Услуги</a></li>
         <li><a href="#process">Процесс</a></li>
-        <li><a href="#cases">Кейсы</a></li>
+        <li><a href="/kejsy/">Кейсы</a></li>
         <li><a href="#faq">FAQ</a></li>
         <li class="always-visible"><a href="tel:+79117621468" class="nav-phone">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
@@ -2746,7 +2778,7 @@ html{scroll-padding-top:96px}
   <a href="#about">О нас</a>
   <a href="#services">Услуги</a>
   <a href="#process">Процесс</a>
-  <a href="#cases">Кейсы</a>
+  <a href="/kejsy/">Кейсы</a>
   <a href="#guarantees">Гарантии</a>
   <a href="#faq">FAQ</a>
   <a href="#contact">Контакты</a>
@@ -3200,7 +3232,9 @@ html{scroll-padding-top:96px}
     <div class="section-actions reveal" style="margin-top:24px; display:flex; justify-content:center;">
       <a href="/kejsy/" class="btn btn-ghost">Смотреть все фото и кейсы</a>
     </div>
-  </section>
+  
+  <div class="container"><div class="spk-home-trust reveal"><div><strong>Хотите посмотреть реальные работы и документы?</strong><p>Вынесли фотографии с объектов и официальные выписки в отдельные разделы, чтобы всё можно было проверить без поиска по сайту.</p></div><div class="spk-home-trust-actions"><a class="spk-real-link primary" href="/kejsy/">Фото и кейсы</a><a class="spk-real-link" href="/dokumenty/">Документы и СРО</a></div></div></div>
+</section>
 
 <!-- Guarantees / Гарантии -->
 <section id="guarantees" style="padding-top: 60px;">
@@ -3558,7 +3592,7 @@ html{scroll-padding-top:96px}
       <ul>
         <li><a href="#services">Услуги</a></li>
         <li><a href="#process">Процесс</a></li>
-        <li><a href="#cases">Кейсы</a></li>
+        <li><a href="/kejsy/">Кейсы</a></li>
         <li><a href="#guarantees">Гарантии</a></li>
         <li><a href="#faq">FAQ</a></li>
         <li><a href="#contact">Контакты</a></li>
