@@ -2619,13 +2619,12 @@
 @media(max-width:380px){.hero-service-links{grid-template-columns:minmax(0,1fr)}}
 
 /* Final homepage anchor/header fixes */
-html{scroll-padding-top:96px}
 #about,#services,#process,#cases,#faq,#contact{scroll-margin-top:96px}
 
 
 
   /* Lighthouse: skip style/layout work for content below the fold until needed. */
-  #about, #process, #services, #why, #cases, #guarantees,
+  #about, #process, #services-details, #why, #cases, #guarantees,
   #after-steps, #faq, #contact, footer {
     content-visibility: auto;
     contain-intrinsic-size: auto 900px;
@@ -2634,7 +2633,7 @@ html{scroll-padding-top:96px}
   @media (max-width: 768px) {
     #about { contain-intrinsic-size: auto 620px; }
     #process { contain-intrinsic-size: auto 1050px; }
-    #services { contain-intrinsic-size: auto 1500px; }
+    #services-details { contain-intrinsic-size: auto 1500px; }
     #why { contain-intrinsic-size: auto 900px; }
     #cases { contain-intrinsic-size: auto 1150px; }
     #guarantees { contain-intrinsic-size: auto 900px; }
@@ -2826,7 +2825,7 @@ html{scroll-padding-top:96px}
         </a>
         <a href="/uslugi/" class="btn btn-ghost">Все услуги</a>
       </div>
-      <div class="hero-services">
+      <div class="hero-services" id="services">
       <h2 class="hero-action-label" id="hero-services-title">Наши услуги</h2>
       <div class="hero-service-links" role="navigation" aria-labelledby="hero-services-title">
         <a class="hero-service-link" href="/podklyuchenie-k-vodokanalu/">Подключение под ключ</a>
@@ -3003,7 +3002,7 @@ html{scroll-padding-top:96px}
 </section>
 
 <!-- Services -->
-<section id="services">
+<section id="services-details">
   <div class="container">
     <div class="section-header reveal">
       <div class="section-eyebrow">Наши услуги</div>
