@@ -1,0 +1,33 @@
+/* Shared header branding; surrounding navigation keeps its existing layout. */
+header a.spk-brand {
+  display: flex;
+  align-items: center;
+  flex: 0 1 250px;
+  width: 250px;
+  min-width: 0;
+  max-width: 100%;
+  text-decoration: none;
+}
+
+header a.spk-brand > img {
+  display: block;
+  width: auto;
+  height: 52px;
+  max-width: 100%;
+  object-fit: contain;
+  object-position: left center;
+  flex: 0 1 auto;
+}
+
+@media (max-width: 620px) {
+  header a.spk-brand {
+    flex-basis: 190px;
+    width: 190px;
+  }
+
+  header a.spk-brand > img {
+    width: auto;
+    height: 40px;
+    max-width: 100%;
+  }
+}
