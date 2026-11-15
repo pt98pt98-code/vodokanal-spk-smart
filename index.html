@@ -1295,53 +1295,69 @@
     line-height: 1.6;
   }
 
-  /* ============ COUNTER STATS ============ */
-  .counters {
+  /* ============ HOMEPAGE BENEFITS ============ */
+  .home-benefits {
     background: linear-gradient(135deg, var(--deep), var(--ocean));
-    border-radius: 32px;
-    padding: 60px 40px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 32px;
     border: 1px solid var(--line);
-    margin: 0 auto;
+    border-radius: 32px;
+    padding: 48px 40px;
     max-width: 1280px;
-    position: relative;
-    overflow: hidden;
+    margin: 0 auto;
   }
-  
-  .counters::before {
+
+  .home-benefits .section-header { margin-bottom: 28px; }
+  .home-benefits .section-title { font-size: clamp(30px, 4vw, 48px); }
+  .home-benefits .section-sub { max-width: 720px; margin: 0 auto; }
+
+  .home-benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: 1fr;
+    gap: 18px;
+  }
+
+  .home-benefit {
+    min-width: 0;
+    padding: 26px;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    background: var(--glass);
+    transition: transform .25s ease, border-color .25s ease, background .25s ease;
+  }
+
+  .home-benefit::before {
     content: '';
-    position: absolute;
-    top: -50%; right: -20%;
-    width: 60%; height: 200%;
-    background: radial-gradient(circle, rgba(90, 179, 224, 0.15), transparent 60%);
-    pointer-events: none;
+    display: block;
+    width: 30px;
+    height: 2px;
+    margin-bottom: 18px;
+    border-radius: 2px;
+    background: var(--sky);
   }
-  
-  .counter {
-    text-align: center;
-    position: relative;
+
+  .home-benefit h3 {
+    margin: 0 0 10px;
+    color: var(--pearl);
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.3;
+    overflow-wrap: break-word;
   }
-  
-  .counter-num {
-    font-family: 'Fraunces', serif;
-    font-size: clamp(48px, 6vw, 76px);
-    font-weight: 400;
-    line-height: 1;
-    background: linear-gradient(135deg, var(--gold), var(--gold-bright));
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: 12px;
-  }
-  
-  .counter-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12px;
+
+  .home-benefit p {
+    margin: 0;
     color: var(--foam);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    font-size: 15px;
+    line-height: 1.65;
+    overflow-wrap: break-word;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .home-benefit:hover {
+      transform: translateY(-2px);
+      border-color: var(--sky);
+      background: var(--glass-bright);
+    }
   }
 
   /* ============ MESSENGERS QUICK ============ */
@@ -2382,16 +2398,11 @@
     
     .section-sub { font-size: 15px; }
     
-    /* COUNTERS — 2 columns on mobile */
-    .counters {
-      grid-template-columns: 1fr 1fr;
-      padding: 32px 20px;
-      gap: 24px;
-      border-radius: 20px;
-    }
-    
-    .counter-num { font-size: 42px; }
-    .counter-label { font-size: 10px; letter-spacing: 0.08em; }
+    /* Benefits — one column on mobile */
+    .home-benefits { padding: 32px 20px; border-radius: 20px; }
+    .home-benefits-grid { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+    .home-benefit { padding: 22px; }
+    .home-benefit h3 { font-size: 18px; }
     
     /* SERVICES */
     .services-grid { gap: 16px; }
@@ -2511,7 +2522,7 @@
     .hero-buttons { flex-direction: column; }
     .messenger-quick { flex-direction: column; }
     .btn, .msg-btn { width: 100%; }
-    .counters { grid-template-columns: 1fr; padding: 24px 16px; }
+    .home-benefits { padding: 28px 16px; }
     .nav-phone span { display: none; } /* show only icon on tiny screens */
   }
   
@@ -2860,22 +2871,28 @@
 <!-- About -->
 <section id="about" style="padding-top: 60px; padding-bottom: 60px;">
   <div class="container">
-    <div class="counters reveal">
-      <div class="counter">
-        <div class="counter-num" data-count="10" data-suffix="+">10+</div>
-        <div class="counter-label">лет на рынке</div>
+    <div class="home-benefits reveal" aria-labelledby="home-benefits-title">
+      <div class="section-header">
+        <h2 class="section-title" id="home-benefits-title">Почему выбирают СПК Смарт</h2>
+        <p class="section-sub">Берём на себя весь цикл подключения — от документов до выполненных работ и сдачи объекта.</p>
       </div>
-      <div class="counter">
-        <div class="counter-num" data-count="500" data-suffix="+">500+</div>
-        <div class="counter-label">подключений</div>
-      </div>
-      <div class="counter">
-        <div class="counter-num" data-count="6">6</div>
-        <div class="counter-label">направлений услуг</div>
-      </div>
-      <div class="counter">
-        <div class="counter-num" data-count="2">2</div>
-        <div class="counter-label">региона работы</div>
+      <div class="home-benefits-grid">
+        <article class="home-benefit">
+          <h3>Подключение под ключ</h3>
+          <p>Один подрядчик на весь путь: ТУ, проектирование, согласование, монтаж и сдача.</p>
+        </article>
+        <article class="home-benefit">
+          <h3>Работаем по СПб и ЛО</h3>
+          <p>Берём объекты в Санкт-Петербурге и Ленинградской области.</p>
+        </article>
+        <article class="home-benefit">
+          <h3>ГНБ без лишнего вскрытия</h3>
+          <p>Выполняем проколы под дорогами и благоустройством там, где это технически возможно.</p>
+        </article>
+        <article class="home-benefit">
+          <h3>Сопровождаем согласования</h3>
+          <p>Помогаем пройти необходимые этапы взаимодействия с Водоканалом и смежными организациями.</p>
+        </article>
       </div>
     </div>
   </div>
