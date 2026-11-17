@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-$configPath = dirname(__DIR__) . '/telegram-config.php';
+$configPath = __DIR__ . '/telegram-config.php';
 
 if (!is_file($configPath)) {
     http_response_code(500);
