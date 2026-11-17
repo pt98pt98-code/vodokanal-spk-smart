@@ -84,7 +84,7 @@ curl_setopt_array($ch, [
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_CONNECTTIMEOUT => 10,
     CURLOPT_TIMEOUT => 30,
-    CURLOPT_IPRESOLVE => CURL_IPRESOLVE_V4,
+    CURLOPT_IPRESOLVE => CURL_IPRESOLVE_V6,
 ]);
 
 $response = curl_exec($ch);
